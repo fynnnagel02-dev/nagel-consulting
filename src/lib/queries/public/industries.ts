@@ -1,8 +1,9 @@
 import "server-only";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { Industry } from "@/lib/types/content";
 
-export async function getActiveIndustries() {
+export async function getActiveIndustries(): Promise<Industry[]> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("industries")
@@ -14,5 +15,5 @@ export async function getActiveIndustries() {
     throw error;
   }
 
-  return data;
+  return (data ?? []) as Industry[];
 }

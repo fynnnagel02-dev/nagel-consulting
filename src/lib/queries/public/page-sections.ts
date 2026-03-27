@@ -1,8 +1,9 @@
 import "server-only";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { PageSection } from "@/lib/types/content";
 
-export async function getPageSections(pageSlug: string) {
+export async function getPageSections(pageSlug: string): Promise<PageSection[]> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("page_sections")
@@ -16,5 +17,5 @@ export async function getPageSections(pageSlug: string) {
     throw error;
   }
 
-  return data;
+  return (data ?? []) as PageSection[];
 }

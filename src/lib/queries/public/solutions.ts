@@ -1,9 +1,9 @@
 import "server-only";
 
-import type { SolutionWithRelations } from "@/lib/types/content";
+import type { Solution, SolutionWithRelations } from "@/lib/types/content";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-export async function getActiveSolutions() {
+export async function getActiveSolutions(): Promise<Solution[]> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("solutions")
@@ -16,10 +16,10 @@ export async function getActiveSolutions() {
     throw error;
   }
 
-  return data;
+  return (data ?? []) as Solution[];
 }
 
-export async function getFeaturedSolutions() {
+export async function getFeaturedSolutions(): Promise<Solution[]> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("solutions")
@@ -33,7 +33,7 @@ export async function getFeaturedSolutions() {
     throw error;
   }
 
-  return data;
+  return (data ?? []) as Solution[];
 }
 
 export async function getSolutionBySlug(slug: string) {

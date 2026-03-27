@@ -1,8 +1,11 @@
 import "server-only";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { SolutionDemo } from "@/lib/types/content";
 
-export async function getActiveSolutionDemos(solutionId?: string) {
+export async function getActiveSolutionDemos(
+  solutionId?: string,
+): Promise<SolutionDemo[]> {
   const supabase = await createSupabaseServerClient();
   let query = supabase
     .from("solution_demos")
@@ -21,5 +24,5 @@ export async function getActiveSolutionDemos(solutionId?: string) {
     throw error;
   }
 
-  return data;
+  return (data ?? []) as SolutionDemo[];
 }

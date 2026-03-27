@@ -2,20 +2,20 @@ import type { LeadEmailPayload } from "@/lib/types/leads";
 
 function renderLeadDetails(lead: LeadEmailPayload) {
   return [
-    ["Request type", lead.type],
-    ["First name", lead.firstName],
-    ["Last name", lead.lastName],
-    ["Email", lead.email],
-    ["Company", lead.companyName],
-    ["Phone", lead.phone],
-    ["Industry", lead.industry],
-    ["Employee range", lead.employeeCountRange],
-    ["Current tool", lead.currentTool],
-    ["Process to digitize", lead.processToDigitize],
-    ["Related solution", lead.relatedSolutionSlug],
-    ["Related demo ID", lead.relatedDemoId],
-    ["Source", lead.source],
-    ["Message", lead.message],
+    ["Anfrageart", lead.type],
+    ["Vorname", lead.firstName],
+    ["Nachname", lead.lastName],
+    ["E-Mail", lead.email],
+    ["Unternehmen", lead.companyName],
+    ["Telefon", lead.phone],
+    ["Branche", lead.industry],
+    ["Mitarbeiterzahl", lead.employeeCountRange],
+    ["Bisheriges Werkzeug", lead.currentTool],
+    ["Zu digitalisierender Ablauf", lead.processToDigitize],
+    ["Zugehörige Lösung", lead.relatedSolutionSlug],
+    ["Zugehörige Demo-ID", lead.relatedDemoId],
+    ["Quelle", lead.source],
+    ["Nachricht", lead.message],
   ]
     .filter(([, value]) => value)
     .map(([label, value]) => ({ label, value: String(value) }));
@@ -23,11 +23,11 @@ function renderLeadDetails(lead: LeadEmailPayload) {
 
 export function buildLeadNotificationTemplate(lead: LeadEmailPayload) {
   const rows = renderLeadDetails(lead);
-  const subject = `New ${lead.type.replace("_", " ")} lead from ${lead.firstName} ${lead.lastName}`;
+  const subject = `Neue Anfrage (${lead.type.replace("_", " ")}) von ${lead.firstName} ${lead.lastName}`;
 
   const html = `
     <div style="font-family: Arial, sans-serif; color: #1c1917;">
-      <h1 style="font-size: 20px; margin-bottom: 16px;">New lead received</h1>
+      <h1 style="font-size: 20px; margin-bottom: 16px;">Neue Anfrage eingegangen</h1>
       <table style="border-collapse: collapse; width: 100%;">
         <tbody>
           ${rows
@@ -51,27 +51,27 @@ export function buildLeadNotificationTemplate(lead: LeadEmailPayload) {
 }
 
 export function buildLeadConfirmationTemplate(lead: LeadEmailPayload) {
-  const subject = "We received your request";
+  const subject = "Ihre Anfrage ist bei uns eingegangen";
 
   const html = `
     <div style="font-family: Arial, sans-serif; color: #1c1917;">
-      <h1 style="font-size: 20px; margin-bottom: 16px;">Thanks for reaching out</h1>
-      <p style="margin: 0 0 12px;">Hello ${lead.firstName},</p>
+      <h1 style="font-size: 20px; margin-bottom: 16px;">Vielen Dank für Ihre Nachricht</h1>
+      <p style="margin: 0 0 12px;">Hallo ${lead.firstName},</p>
       <p style="margin: 0 0 12px;">
-        We received your ${lead.type.replace("_", " ")} request and will review it as soon as possible.
+        wir haben Ihre Anfrage (${lead.type.replace("_", " ")}) erhalten und prüfen sie so schnell wie möglich.
       </p>
       <p style="margin: 0 0 12px;">
-        If you shared project or demo details, we will use them to prepare the next step.
+        Wenn Sie bereits Projekt- oder Demo-Informationen geteilt haben, nutzen wir diese zur Vorbereitung des nächsten Schritts.
       </p>
       <p style="margin: 0;">Nagel Consulting</p>
     </div>
   `;
 
   const text = [
-    `Hello ${lead.firstName},`,
+    `Hallo ${lead.firstName},`,
     "",
-    `We received your ${lead.type.replace("_", " ")} request and will review it as soon as possible.`,
-    "If you shared project or demo details, we will use them to prepare the next step.",
+    `wir haben Ihre Anfrage (${lead.type.replace("_", " ")}) erhalten und prüfen sie so schnell wie möglich.`,
+    "Wenn Sie bereits Projekt- oder Demo-Informationen geteilt haben, nutzen wir diese zur Vorbereitung des nächsten Schritts.",
     "",
     "Nagel Consulting",
   ].join("\n");

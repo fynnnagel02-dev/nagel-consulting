@@ -1,8 +1,9 @@
 import "server-only";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { SecurityFeature } from "@/lib/types/content";
 
-export async function getActiveSecurityFeatures() {
+export async function getActiveSecurityFeatures(): Promise<SecurityFeature[]> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("security_features")
@@ -15,5 +16,5 @@ export async function getActiveSecurityFeatures() {
     throw error;
   }
 
-  return data;
+  return (data ?? []) as SecurityFeature[];
 }

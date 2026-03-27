@@ -33,7 +33,7 @@ export async function createSolutionDemo(
     }
 
     revalidatePath("/demo");
-    revalidatePath("/solutions");
+    revalidatePath("/loesungen");
     revalidatePath("/admin");
 
     return {
@@ -73,7 +73,7 @@ export async function updateSolutionDemo(
     }
 
     revalidatePath("/demo");
-    revalidatePath("/solutions");
+    revalidatePath("/loesungen");
     revalidatePath("/admin");
 
     return {

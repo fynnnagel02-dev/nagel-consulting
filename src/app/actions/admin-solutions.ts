@@ -62,23 +62,32 @@ export async function createSolution(
     const slug = ensureSlug(parsed.data.slug ?? parsed.data.title, parsed.data.title);
     const { features, ...solution } = parsed.data;
 
-    const { data, error } = await supabase
+    const response = await supabase
       .from("solutions")
       .insert({
         ...solution,
         slug,
       } as never)
       .select("id")
-      .returns<SolutionIdRow>()
       .single();
+
+    const data = response.data as SolutionIdRow | null;
+    const error = response.error;
 
     if (error) {
       throw error;
     }
 
+    if (!data) {
+      return {
+        success: false,
+        message: "Solution could not be created.",
+      };
+    }
+
     await replaceSolutionFeatures(data.id, features);
 
-    revalidatePath("/solutions");
+    revalidatePath("/loesungen");
     revalidatePath("/demo");
     revalidatePath("/admin");
 
@@ -109,7 +118,7 @@ export async function updateSolution(
     const slug = ensureSlug(parsed.data.slug ?? parsed.data.title, parsed.data.title);
     const { features, id, ...solution } = parsed.data;
 
-    const { data, error } = await supabase
+    const response = await supabase
       .from("solutions")
       .update({
         ...solution,
@@ -119,14 +128,24 @@ export async function updateSolution(
       .select("id")
       .single();
 
+    const data = response.data as SolutionIdRow | null;
+    const error = response.error;
+
     if (error) {
       throw error;
     }
 
+    if (!data) {
+      return {
+        success: false,
+        message: "Solution could not be updated.",
+      };
+    }
+
     await replaceSolutionFeatures(id, features);
 
-    revalidatePath("/solutions");
-    revalidatePath(`/solutions/${slug}`);
+    revalidatePath("/loesungen");
+    revalidatePath(`/loesungen/${slug}`);
     revalidatePath("/demo");
     revalidatePath("/admin");
 

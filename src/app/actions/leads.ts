@@ -89,8 +89,8 @@ async function insertLeadAndSendEmails(
   return {
     success: true,
     message: emailFailed
-      ? "Your request was saved, but email delivery needs attention."
-      : "Your request was submitted successfully.",
+      ? "Ihre Anfrage wurde gespeichert, aber der E-Mail-Versand benötigt Aufmerksamkeit."
+      : "Ihre Anfrage wurde erfolgreich übermittelt.",
   };
 }
 

@@ -54,7 +54,7 @@ export function getZodFieldErrors(error: ZodError): FieldErrors {
   const fieldErrors: FieldErrors = {};
 
   for (const [key, value] of Object.entries(flattened)) {
-    fieldErrors[key] = value ?? [];
+    fieldErrors[key] = Array.isArray(value) ? value : [];
   }
 
   return fieldErrors;

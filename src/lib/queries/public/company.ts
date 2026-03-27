@@ -1,8 +1,9 @@
 import "server-only";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { CompanyInfo } from "@/lib/types/content";
 
-export async function getCompanyInfo() {
+export async function getCompanyInfo(): Promise<CompanyInfo | null> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("company_info")
@@ -14,5 +15,5 @@ export async function getCompanyInfo() {
     throw error;
   }
 
-  return data;
+  return data as CompanyInfo | null;
 }

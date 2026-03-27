@@ -26,25 +26,25 @@ insert into public.company_info (
 values (
   'default',
   'Nagel Consulting',
-  'Secure software for operational businesses',
-  'Nagel Consulting helps small and medium-sized businesses replace spreadsheet-driven workflows with secure, maintainable web applications.',
-  'Build practical digital systems that reduce operational friction and create trust.',
-  'Become the trusted software partner for operational businesses that need clarity, structure, and security.',
+  'Sichere Software für operative Unternehmen',
+  'Nagel Consulting unterstützt kleine und mittlere Unternehmen dabei, tabellengetriebene Abläufe durch sichere, wartbare Webanwendungen zu ersetzen.',
+  'Praxisnahe digitale Systeme entwickeln, die operative Reibung reduzieren und Vertrauen schaffen.',
+  'Der verlässliche Softwarepartner für operative Unternehmen werden, die Klarheit, Struktur und Sicherheit benötigen.',
   'hello@nagel-consulting.de',
   'contact@nagel-consulting.de',
   '+49 000 000000',
-  'Example Street 1',
+  'Beispielstraße 1',
   '10115',
   'Berlin',
-  'Germany',
-  'Sole Proprietorship',
+  'Deutschland',
+  'Einzelunternehmen',
   'Fynn Nagel',
-  'Nagel Consulting | Custom Software For Operational Businesses',
-  'Nagel Consulting builds secure web applications for crafts businesses, service companies, and operational teams.',
-  'Request a Consultation',
-  '/contact',
-  'Explore Solutions',
-  '/solutions'
+  'Nagel Consulting | Individuelle Software für operative Unternehmen',
+  'Nagel Consulting entwickelt sichere Webanwendungen für Handwerksbetriebe, Dienstleister und operative Teams.',
+  'Beratung anfragen',
+  '/kontakt',
+  'Lösungen ansehen',
+  '/loesungen'
 )
 on conflict (singleton_key) do update
 set
@@ -81,19 +81,19 @@ insert into public.legal_pages (
 values
   (
     'imprint',
-    'Imprint',
-    'Replace this placeholder imprint with the legally required company information before go-live.',
-    'Imprint | Nagel Consulting',
-    'Legal company identification for Nagel Consulting.',
+    'Impressum',
+    'Ersetzen Sie dieses Platzhalter-Impressum vor dem Go-live durch die rechtlich erforderlichen Unternehmensangaben.',
+    'Impressum | Nagel Consulting',
+    'Rechtliche Anbieterkennzeichnung von Nagel Consulting.',
     timezone('utc', now()),
     true
   ),
   (
     'privacy_policy',
-    'Privacy Policy',
-    'Replace this placeholder privacy policy with your final data protection notice before go-live.',
-    'Privacy Policy | Nagel Consulting',
-    'Privacy and data protection information for Nagel Consulting.',
+    'Datenschutzerklärung',
+    'Ersetzen Sie diese Platzhalter-Datenschutzerklärung vor dem Go-live durch Ihre endgültigen Datenschutzhinweise.',
+    'Datenschutzerklärung | Nagel Consulting',
+    'Datenschutzinformationen von Nagel Consulting.',
     timezone('utc', now()),
     true
   )
@@ -108,30 +108,30 @@ set
 
 delete from public.security_features
 where title in (
-  'Role-based access control',
-  'Auditable business data',
-  'Encrypted data transport'
+  'Rollenbasierter Zugriff',
+  'Nachvollziehbare Geschäftsdaten',
+  'Verschlüsselte Datenübertragung'
 );
 
 insert into public.security_features (title, description, category, sort_order, is_active)
 values
   (
-    'Role-based access control',
-    'Internal operations can be restricted to authorized users so sensitive workflow and business data stay protected.',
+    'Rollenbasierter Zugriff',
+    'Interne Abläufe können auf berechtigte Nutzer begrenzt werden, damit sensible Prozess- und Unternehmensdaten geschützt bleiben.',
     'access',
     0,
     true
   ),
   (
-    'Auditable business data',
-    'Critical records can be structured, timestamped, and managed consistently instead of being scattered across spreadsheets.',
+    'Nachvollziehbare Geschäftsdaten',
+    'Wichtige Datensätze können strukturiert, mit Zeitbezug erfasst und einheitlich geführt werden, statt über Tabellen verteilt zu bleiben.',
     'governance',
     1,
     true
   ),
   (
-    'Encrypted data transport',
-    'All platform communication is designed to operate over modern HTTPS-based delivery and secure service integrations.',
+    'Verschlüsselte Datenübertragung',
+    'Die gesamte Plattformkommunikation ist auf moderne HTTPS-Übertragung und sichere Service-Integrationen ausgelegt.',
     'transport',
     2,
     true
@@ -139,30 +139,30 @@ values
 
 delete from public.faq_items
 where question in (
-  'Do you only work with large companies?',
-  'Can you replace existing spreadsheet workflows?',
-  'Do you offer a demo before a full project starts?'
+  'Arbeiten Sie nur mit großen Unternehmen?',
+  'Können Sie bestehende tabellenbasierte Abläufe ersetzen?',
+  'Gibt es vor einem vollständigen Projekt auch eine Demo?'
 );
 
 insert into public.faq_items (question, answer, category, sort_order, is_active)
 values
   (
-    'Do you only work with large companies?',
-    'No. Nagel Consulting is focused on small and medium-sized businesses that need practical systems instead of enterprise overhead.',
+    'Arbeiten Sie nur mit großen Unternehmen?',
+    'Nein. Nagel Consulting konzentriert sich auf kleine und mittlere Unternehmen, die praxisnahe Systeme statt schwerfälliger Konzernlogik brauchen.',
     'general',
     0,
     true
   ),
   (
-    'Can you replace existing spreadsheet workflows?',
-    'Yes. A common engagement starts by translating spreadsheet-based steps into structured workflows, forms, permissions, and reporting.',
+    'Können Sie bestehende tabellenbasierte Abläufe ersetzen?',
+    'Ja. Ein typisches Projekt beginnt damit, tabellenbasierte Schritte in strukturierte Abläufe, Formulare, Rechte und Auswertungen zu überführen.',
     'solutions',
     1,
     true
   ),
   (
-    'Do you offer a demo before a full project starts?',
-    'Yes. Demo and showcase applications can be used to build trust and clarify how a tailored system would work for your business.',
+    'Gibt es vor einem vollständigen Projekt auch eine Demo?',
+    'Ja. Demos und Beispielanwendungen helfen dabei, Vertrauen aufzubauen und greifbar zu machen, wie eine passende Lösung für Ihr Unternehmen funktionieren kann.',
     'demo',
     2,
     true
@@ -187,54 +187,54 @@ insert into public.solutions (
 )
 values
   (
-    'Operational Workflow Hub',
+    'Operatives Workflow-Zentrum',
     'operational-workflow-hub',
-    'A secure internal platform for replacing manual task handoffs and spreadsheet coordination.',
-    'Operational Workflow Hub centralizes operational requests, assignments, status tracking, and approvals for teams that have outgrown Excel-based coordination.',
+    'Eine sichere interne Anwendung, die manuelle Übergaben und tabellenbasierte Koordination ersetzt.',
+    'Das operative Workflow-Zentrum bündelt Anfragen, Zuständigkeiten, Statusverfolgung und Freigaben für Teams, die aus Excel-basierter Koordination herausgewachsen sind.',
     'operations',
-    'Craft businesses and service teams',
-    'Important requests and operational updates are often spread across spreadsheets, messages, and personal knowledge.',
-    'Give the business one structured place to manage operational work reliably.',
-    'Operational Workflow Hub | Nagel Consulting',
-    'Internal workflow software for operational businesses that need structure and transparency.',
+    'Handwerksbetriebe und Serviceteams',
+    'Wichtige Anfragen und operative Aktualisierungen sind oft über Tabellen, Nachrichten und Einzelwissen verteilt.',
+    'Schafft einen strukturierten Ort, an dem operative Arbeit verlässlich gesteuert werden kann.',
+    'Operatives Workflow-Zentrum | Nagel Consulting',
+    'Interne Workflow-Software für operative Unternehmen, die Struktur und Transparenz brauchen.',
     true,
     true,
     0,
-    'Request a Consultation',
+    'Beratung anfragen',
     'contact'
   ),
   (
-    'Customer Intake Portal',
+    'Portal für Kundenanfragen',
     'customer-intake-portal',
-    'A guided intake system for capturing consistent project requests from prospects or customers.',
-    'Customer Intake Portal turns unstructured inbound requests into complete, reviewable records with the right fields, attachments, and follow-up flow.',
+    'Ein geführtes Erfassungssystem, das Projektanfragen von Interessenten oder Kunden einheitlich aufnimmt.',
+    'Das Portal für Kundenanfragen verwandelt unstrukturierte Eingänge in vollständige, prüfbare Vorgänge mit passenden Feldern, Anhängen und klarer Nachverfolgung.',
     'sales',
-    'Local service companies',
-    'Initial customer information often arrives incomplete, forcing manual follow-up and delays.',
-    'Create a more reliable first step for both your team and your customers.',
-    'Customer Intake Portal | Nagel Consulting',
-    'Digitize customer intake and qualification for service-oriented businesses.',
+    'Lokale Dienstleistungsunternehmen',
+    'Erste Kundeninformationen treffen oft unvollständig ein und führen zu manueller Nacharbeit und Verzögerungen.',
+    'Schafft einen verlässlicheren ersten Schritt für Ihr Team und Ihre Kunden.',
+    'Portal für Kundenanfragen | Nagel Consulting',
+    'Digitalisiert Anfrageaufnahme und Qualifizierung für serviceorientierte Unternehmen.',
     true,
     true,
     1,
-    'View Demo',
+    'Demo ansehen',
     'demo'
   ),
   (
-    'Field Service Coordination App',
+    'Anwendung zur Einsatzkoordination',
     'field-service-coordination-app',
-    'A structured planning workspace for dispatching, status updates, and field execution visibility.',
-    'Field Service Coordination App helps operational teams coordinate work across office and field staff without relying on scattered documents and manual updates.',
+    'Ein strukturierter Planungsbereich für Einsatzsteuerung, Statusmeldungen und transparente Außendienstabläufe.',
+    'Die Anwendung zur Einsatzkoordination hilft operativen Teams, Arbeit zwischen Büro und Außendienst zu steuern, ohne auf verstreute Dokumente und manuelle Rückmeldungen angewiesen zu sein.',
     'field-service',
-    'Operational companies with field teams',
-    'Scheduling, status reporting, and handoffs are often fragmented and hard to trust.',
-    'Improve transparency and reduce coordination overhead across the full service cycle.',
-    'Field Service Coordination App | Nagel Consulting',
-    'Coordinate field teams with structured workflows and real-time operational visibility.',
+    'Operative Unternehmen mit Außendienstteams',
+    'Planung, Statusmeldungen und Übergaben sind oft fragmentiert und nur schwer verlässlich nachzuvollziehen.',
+    'Verbessert Transparenz und reduziert Abstimmungsaufwand über den gesamten Servicezyklus.',
+    'Anwendung zur Einsatzkoordination | Nagel Consulting',
+    'Koordiniert Außendienstteams mit strukturierten Abläufen und klarer operativer Sichtbarkeit.',
     true,
     false,
     2,
-    'Request a Consultation',
+    'Beratung anfragen',
     'contact'
   )
 on conflict (slug) do update
@@ -276,27 +276,27 @@ with seeded_solutions as (
   )
 )
 insert into public.solution_features (solution_id, title, description, sort_order)
-select id, 'Centralized requests', 'Capture operational requests in one controlled workflow.', 0
+select id, 'Zentrale Anfragen', 'Erfasst operative Anfragen in einem kontrollierten Ablauf.', 0
 from seeded_solutions
 where slug = 'operational-workflow-hub'
 union all
-select id, 'Status visibility', 'Track every request through a clear lifecycle.', 1
+select id, 'Klare Statussicht', 'Begleitet jede Anfrage durch einen eindeutigen Ablauf.', 1
 from seeded_solutions
 where slug = 'operational-workflow-hub'
 union all
-select id, 'Structured intake forms', 'Collect the right project information from the start.', 0
+select id, 'Strukturierte Anfrageformulare', 'Erfasst von Beginn an die richtigen Projektinformationen.', 0
 from seeded_solutions
 where slug = 'customer-intake-portal'
 union all
-select id, 'Qualification workflow', 'Turn raw requests into reviewable opportunities.', 1
+select id, 'Qualifizierungsablauf', 'Macht aus eingehenden Anfragen sauber prüfbare Vorgänge.', 1
 from seeded_solutions
 where slug = 'customer-intake-portal'
 union all
-select id, 'Dispatch overview', 'Coordinate work assignments for field operations.', 0
+select id, 'Einsatzübersicht', 'Koordiniert Arbeitsaufträge für Außendienst und operative Einsätze.', 0
 from seeded_solutions
 where slug = 'field-service-coordination-app'
 union all
-select id, 'Execution updates', 'Keep office and field teams aligned on live work status.', 1
+select id, 'Rückmeldungen aus der Ausführung', 'Hält Büro und Außendienst beim aktuellen Arbeitsstand auf demselben Stand.', 1
 from seeded_solutions
 where slug = 'field-service-coordination-app';
 
@@ -333,8 +333,8 @@ insert into public.solution_demos (
 )
 select
   id,
-  'Operations dashboard demo',
-  'A walkthrough of how operational requests can move from intake to completion.',
+  'Demo zur operativen Ablaufsteuerung',
+  'Eine geführte Vorschau darauf, wie operative Anfragen vom Eingang bis zum Abschluss gesteuert werden können.',
   'https://example.com/demo/operations-dashboard',
   null,
   'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
@@ -345,8 +345,8 @@ where slug = 'operational-workflow-hub'
 union all
 select
   id,
-  'Customer intake demo',
-  'A showcase of a guided customer request and qualification flow.',
+  'Demo zur Kundenanfrage-Erfassung',
+  'Eine Vorschau auf einen geführten Ablauf für Kundenanfragen und deren Qualifizierung.',
   'https://example.com/demo/customer-intake',
   null,
   'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
@@ -372,19 +372,19 @@ values
   (
     'home',
     'hero',
-    'Software systems for operational businesses',
-    'Replace spreadsheet chaos with secure workflows',
-    'Nagel Consulting builds practical internal platforms and client-facing business tools for teams that need reliability, structure, and trust.',
-    '{"primaryCtaHref":"/contact","primaryCtaLabel":"Request a Consultation","secondaryCtaHref":"/solutions","secondaryCtaLabel":"Explore Solutions"}'::jsonb,
+    'Softwaresysteme für operative Unternehmen',
+    'Excel-Chaos durch sichere Abläufe ersetzen',
+    'Nagel Consulting entwickelt praxisnahe interne Plattformen und kundennahe Geschäftswerkzeuge für Teams, die Verlässlichkeit, Struktur und Vertrauen benötigen.',
+    '{"primaryCtaHref":"/kontakt","primaryCtaLabel":"Beratung anfragen","secondaryCtaHref":"/loesungen","secondaryCtaLabel":"Lösungen ansehen"}'::jsonb,
     0,
     true
   ),
   (
     'home',
     'trust-strip',
-    'Built for serious operations',
-    'Structured foundations from the start',
-    'The platform foundation supports secure content, inbound lead workflows, admin management, and scalable future expansion.',
+    'Für anspruchsvolle operative Abläufe gebaut',
+    'Strukturierte Grundlagen von Anfang an',
+    'Die Plattformbasis unterstützt sichere Inhalte, Lead-Abläufe, Administration und eine belastbare Weiterentwicklung.',
     '{}'::jsonb,
     1,
     true
@@ -392,9 +392,9 @@ values
   (
     'solutions',
     'intro',
-    'Solutions for operational clarity',
-    'Structured software where spreadsheets fall short',
-    'These solution entries are structured domain records and can be showcased alongside demos, features, and future industry-specific positioning.',
+    'Lösungen für operative Klarheit',
+    'Strukturierte Software dort, wo Tabellen an Grenzen stoßen',
+    'Diese Lösungseinträge sind strukturierte Fachinhalte und können zusammen mit Demos, Funktionsmerkmalen und künftiger branchenspezifischer Positionierung dargestellt werden.',
     '{}'::jsonb,
     0,
     true
@@ -402,9 +402,9 @@ values
   (
     'security-compliance',
     'hero',
-    'Security and compliance communication',
-    'Explain trust in concrete terms',
-    'Use this page composition layer for marketing-oriented layout blocks while keeping the actual security items in structured database tables.',
+    'Sicherheits- und Vertrauenskommunikation',
+    'Vertrauen konkret und nachvollziehbar erklären',
+    'Diese Seitenstruktur dient für marketingorientierte Inhaltsblöcke, während die eigentlichen Sicherheitspunkte in strukturierten Datenbanktabellen gepflegt werden.',
     '{}'::jsonb,
     0,
     true
@@ -412,10 +412,10 @@ values
   (
     'contact',
     'cta',
-    'Let’s review your workflow',
-    'Bring structure to manual processes',
-    'Use the contact and project-request lead flows to capture qualified inquiries and follow up consistently.',
-    '{"primaryCtaLabel":"Start the Conversation","primaryCtaHref":"/contact"}'::jsonb,
+    'Lassen Sie uns Ihren Ablauf gemeinsam einordnen',
+    'Manuelle Prozesse in klare Struktur überführen',
+    'Die Kontakt- und Projektanfrage-Abläufe helfen dabei, qualifizierte Anfragen sauber zu erfassen und verlässlich nachzuverfolgen.',
+    '{"primaryCtaLabel":"Gespräch starten","primaryCtaHref":"/kontakt"}'::jsonb,
     0,
     true
   );

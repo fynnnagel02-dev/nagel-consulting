@@ -1,8 +1,9 @@
 import "server-only";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { FaqItem } from "@/lib/types/content";
 
-export async function getActiveFaqItems(category?: string) {
+export async function getActiveFaqItems(category?: string): Promise<FaqItem[]> {
   const supabase = await createSupabaseServerClient();
   let query = supabase
     .from("faq_items")
@@ -21,5 +22,5 @@ export async function getActiveFaqItems(category?: string) {
     throw error;
   }
 
-  return data;
+  return (data ?? []) as FaqItem[];
 }

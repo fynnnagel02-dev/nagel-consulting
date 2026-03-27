@@ -72,8 +72,8 @@ export async function updateCompanyInfo(
     }
 
     revalidatePath("/");
-    revalidatePath("/about");
-    revalidatePath("/contact");
+    revalidatePath("/ueber-uns");
+    revalidatePath("/kontakt");
     revalidatePath("/admin");
 
     return {

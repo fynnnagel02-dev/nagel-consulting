@@ -1,8 +1,9 @@
 import "server-only";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { Resource } from "@/lib/types/content";
 
-export async function getPublishedResources() {
+export async function getPublishedResources(): Promise<Resource[]> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("resources")
@@ -15,10 +16,10 @@ export async function getPublishedResources() {
     throw error;
   }
 
-  return data;
+  return (data ?? []) as Resource[];
 }
 
-export async function getFeaturedResources() {
+export async function getFeaturedResources(): Promise<Resource[]> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("resources")
@@ -32,10 +33,10 @@ export async function getFeaturedResources() {
     throw error;
   }
 
-  return data;
+  return (data ?? []) as Resource[];
 }
 
-export async function getResourceBySlug(slug: string) {
+export async function getResourceBySlug(slug: string): Promise<Resource | null> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from("resources")
@@ -48,5 +49,5 @@ export async function getResourceBySlug(slug: string) {
     throw error;
   }
 
-  return data;
+  return data as Resource | null;
 }

@@ -21,17 +21,18 @@ export async function requireAuthenticatedUser() {
     .from("profiles")
     .select("id, email, full_name, role, created_at, updated_at")
     .eq("id", user.id)
-    .returns<ProfileRow>()
     .maybeSingle();
 
-  if (!profile) {
+  const typedProfile = profile as ProfileRow | null;
+
+  if (!typedProfile) {
     redirect("/");
   }
 
   return {
     supabase,
     user,
-    profile,
+    profile: typedProfile,
   };
 }
 

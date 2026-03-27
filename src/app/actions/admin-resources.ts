@@ -65,7 +65,7 @@ export async function createResource(
       throw error;
     }
 
-    revalidatePath("/resources");
+    revalidatePath("/wissen");
     revalidatePath("/admin");
 
     return {
@@ -125,8 +125,7 @@ export async function updateResource(
       throw error;
     }
 
-    revalidatePath("/resources");
-    revalidatePath(`/resources/${slug}`);
+    revalidatePath("/wissen");
     revalidatePath("/admin");
 
     return {

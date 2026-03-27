@@ -127,8 +127,8 @@ export async function upsertLegalPage(
       throw error;
     }
 
-    revalidatePath("/imprint");
-    revalidatePath("/privacy-policy");
+    revalidatePath("/impressum");
+    revalidatePath("/datenschutz");
     revalidatePath("/admin");
 
     return {
