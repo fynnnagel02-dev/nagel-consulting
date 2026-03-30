@@ -1,83 +1,148 @@
 import type { LeadEmailPayload } from "@/lib/types/leads";
 import { getInquiryCategoryFromLeadType } from "@/lib/leads/inquiry";
+import { OFFICIAL_COMPANY } from "@/lib/brand/company";
 
 function getLeadLabel(lead: LeadEmailPayload) {
   return lead.inquiryCategory ?? getInquiryCategoryFromLeadType(lead.type);
 }
 
-function renderLeadDetails(lead: LeadEmailPayload) {
-  return [
-    ["Anfragekategorie", getLeadLabel(lead)],
-    ["Vorname", lead.firstName],
-    ["Nachname", lead.lastName],
-    ["E-Mail", lead.email],
-    ["Unternehmen", lead.companyName],
-    ["Telefon", lead.phone],
-    ["Branche", lead.industry],
-    ["Mitarbeiterzahl", lead.employeeCountRange],
-    ["Bisheriges Werkzeug", lead.currentTool],
-    ["Zu digitalisierender Ablauf", lead.processToDigitize],
-    ["Zugehörige Lösung", lead.relatedSolutionSlug],
-    ["Zugehörige Demo-ID", lead.relatedDemoId],
-    ["Quelle", lead.source],
-    ["Nachricht", lead.message],
-  ]
-    .filter(([, value]) => value)
-    .map(([label, value]) => ({ label, value: String(value) }));
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function toHtmlParagraphs(value: string) {
+  return escapeHtml(value)
+    .split("\n")
+    .filter(Boolean)
+    .map((line) => `<p style="margin: 0 0 8px;">${line}</p>`)
+    .join("");
+}
+
+function renderShell({
+  eyebrow,
+  title,
+  intro,
+  body,
+  footer,
+}: {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  body: string;
+  footer: string;
+}) {
+  return `
+    <div style="margin:0; padding:32px 16px; background:#f8fafc; font-family:Inter,Arial,sans-serif; color:#1f2937;">
+      <div style="max-width:600px; margin:0 auto;">
+        <div style="margin-bottom:16px; font-size:12px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#2f4a67;">
+          ${escapeHtml(OFFICIAL_COMPANY.name)}
+        </div>
+        <div style="background:#ffffff; border:1px solid #e5e7eb; border-radius:24px; padding:32px;">
+          <div style="margin-bottom:24px;">
+            <div style="margin-bottom:12px; font-size:12px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#2f4a67;">
+              ${escapeHtml(eyebrow)}
+            </div>
+            <h1 style="margin:0 0 12px; font-size:28px; line-height:1.2; font-weight:600; color:#1f2937;">
+              ${escapeHtml(title)}
+            </h1>
+            ${
+              intro
+                ? `<p style="margin:0; font-size:15px; line-height:1.8; color:#6b7280;">${escapeHtml(intro)}</p>`
+                : ""
+            }
+          </div>
+          <div style="font-size:15px; line-height:1.8; color:#374151;">
+            ${body}
+          </div>
+          <div style="margin-top:28px; border-top:1px solid #e5e7eb; padding-top:20px; font-size:13px; line-height:1.8; color:#6b7280;">
+            ${footer}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderInternalField(label: string, value: string) {
+  return `
+    <div style="margin-bottom:16px; border:1px solid #e5e7eb; border-radius:18px; padding:16px 18px; background:#ffffff;">
+      <div style="margin-bottom:6px; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#2f4a67;">
+        ${escapeHtml(label)}
+      </div>
+      <div style="font-size:15px; line-height:1.7; color:#1f2937;">
+        ${toHtmlParagraphs(value)}
+      </div>
+    </div>
+  `;
 }
 
 export function buildLeadNotificationTemplate(lead: LeadEmailPayload) {
-  const rows = renderLeadDetails(lead);
-  const subject = `Neue ${getLeadLabel(lead)} von ${lead.firstName} ${lead.lastName}`;
+  const subject = "Neue Anfrage über die Website";
+  const fields = [
+    ["Anfrageart", getLeadLabel(lead)],
+    ["Name", `${lead.firstName} ${lead.lastName}`],
+    ["E-Mail", lead.email],
+    ["Unternehmen", lead.companyName],
+    ["Nachricht", lead.message ?? lead.processToDigitize ?? "Keine zusätzliche Nachricht angegeben."],
+    ["Quelle / Kontext", lead.source],
+  ].filter(([, value]) => value) as Array<[string, string]>;
 
-  const html = `
-    <div style="font-family: Arial, sans-serif; color: #1c1917;">
-      <h1 style="font-size: 20px; margin-bottom: 16px;">Neue Anfrage eingegangen</h1>
-      <table style="border-collapse: collapse; width: 100%;">
-        <tbody>
-          ${rows
-            .map(
-              (row) => `
-                <tr>
-                  <td style="padding: 8px 12px; border: 1px solid #e7e5e4; font-weight: 600; width: 180px;">${row.label}</td>
-                  <td style="padding: 8px 12px; border: 1px solid #e7e5e4;">${row.value}</td>
-                </tr>
-              `,
-            )
-            .join("")}
-        </tbody>
-      </table>
-    </div>
-  `;
+  const html = renderShell({
+    eyebrow: "Interne Benachrichtigung",
+    title: "Neue Anfrage eingegangen",
+    intro: "Sie haben eine neue Anfrage über die Website erhalten.",
+    body: fields.map(([label, value]) => renderInternalField(label, value)).join(""),
+    footer:
+      "Diese E-Mail wurde automatisch über die Website von Nagel Solutions versendet.",
+  });
 
-  const text = rows.map((row) => `${row.label}: ${row.value}`).join("\n");
+  const text = [
+    "Neue Anfrage eingegangen",
+    "",
+    "Sie haben eine neue Anfrage über die Website erhalten.",
+    "",
+    ...fields.flatMap(([label, value]) => [`${label}:`, value, ""]),
+    "Diese E-Mail wurde automatisch über die Website von Nagel Solutions versendet.",
+  ].join("\n");
 
   return { subject, html, text };
 }
 
 export function buildLeadConfirmationTemplate(lead: LeadEmailPayload) {
-  const subject = "Ihre Anfrage ist bei uns eingegangen";
+  const subject = "Ihre Anfrage bei Nagel Solutions";
 
-  const html = `
-    <div style="font-family: Arial, sans-serif; color: #1c1917;">
-      <h1 style="font-size: 20px; margin-bottom: 16px;">Vielen Dank für Ihre Nachricht</h1>
-      <p style="margin: 0 0 12px;">Hallo ${lead.firstName},</p>
-      <p style="margin: 0 0 12px;">
-        wir haben Ihre Anfrage (${getLeadLabel(lead)}) erhalten und prüfen sie so schnell wie möglich.
-      </p>
-      <p style="margin: 0 0 12px;">
-        Wenn Sie bereits Projekt- oder Demo-Informationen geteilt haben, nutzen wir diese zur Vorbereitung des nächsten Schritts.
-      </p>
-      <p style="margin: 0;">Nagel Solutions</p>
-    </div>
-  `;
+  const html = renderShell({
+    eyebrow: "Anfragebestätigung",
+    title: "Vielen Dank für Ihre Anfrage",
+    body: `
+      <p style="margin:0 0 14px;">Hallo ${escapeHtml(lead.firstName)},</p>
+      <p style="margin:0 0 14px;">Wir haben Ihre Anfrage erfolgreich erhalten und prüfen Ihr Anliegen derzeit intern.</p>
+      <p style="margin:0 0 14px;">Nagel Solutions wird sich zeitnah mit einer Rückmeldung bei Ihnen melden.</p>
+      <p style="margin:0 0 14px;">Falls Sie in der Zwischenzeit weitere Informationen ergänzen möchten, können Sie jederzeit auf diese E-Mail antworten oder uns direkt unter <a href="mailto:${escapeHtml(OFFICIAL_COMPANY.email)}" style="color:#2f4a67; text-decoration:none;">${escapeHtml(OFFICIAL_COMPANY.email)}</a> kontaktieren.</p>
+      <p style="margin:24px 0 0;">Mit freundlichen Grüßen<br />Nagel Solutions</p>
+    `,
+    footer: `${escapeHtml(OFFICIAL_COMPANY.name)} · ${escapeHtml(
+      OFFICIAL_COMPANY.addressLine1,
+    )} · ${escapeHtml(`${OFFICIAL_COMPANY.postalCode} ${OFFICIAL_COMPANY.city}`)}`,
+  });
 
   const text = [
+    "Vielen Dank für Ihre Anfrage",
+    "",
     `Hallo ${lead.firstName},`,
     "",
-    `wir haben Ihre Anfrage (${getLeadLabel(lead)}) erhalten und prüfen sie so schnell wie möglich.`,
-    "Wenn Sie bereits Projekt- oder Demo-Informationen geteilt haben, nutzen wir diese zur Vorbereitung des nächsten Schritts.",
+    "Wir haben Ihre Anfrage erfolgreich erhalten und prüfen Ihr Anliegen derzeit intern.",
     "",
+    "Nagel Solutions wird sich zeitnah mit einer Rückmeldung bei Ihnen melden.",
+    "",
+    `Falls Sie in der Zwischenzeit weitere Informationen ergänzen möchten, können Sie jederzeit auf diese E-Mail antworten oder uns direkt unter ${OFFICIAL_COMPANY.email} kontaktieren.`,
+    "",
+    "Mit freundlichen Grüßen",
     "Nagel Solutions",
   ].join("\n");
 

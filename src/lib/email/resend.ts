@@ -21,7 +21,8 @@ export async function sendLeadNotificationEmail(lead: LeadEmailPayload) {
 
   return resend.emails.send({
     from: env.RESEND_FROM_EMAIL,
-    to: OFFICIAL_COMPANY.email,
+    to: env.LEAD_NOTIFICATION_EMAIL,
+    replyTo: lead.email,
     subject: template.subject,
     html: template.html,
     text: template.text,
@@ -36,6 +37,7 @@ export async function sendLeadConfirmationEmail(lead: LeadEmailPayload) {
   return resend.emails.send({
     from: env.RESEND_FROM_EMAIL,
     to: lead.email,
+    replyTo: OFFICIAL_COMPANY.email,
     subject: template.subject,
     html: template.html,
     text: template.text,

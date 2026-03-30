@@ -133,23 +133,21 @@ async function insertLeadAndSendEmails(
 
   await insertLead(input, type);
 
-  let emailFailed = false;
+  try {
+    await sendLeadNotificationEmail(payload);
+  } catch (error) {
+    console.error("Internal lead notification email failed:", error);
+  }
 
   try {
-    await Promise.all([
-      sendLeadNotificationEmail(payload),
-      sendLeadConfirmationEmail(payload),
-    ]);
-  } catch (emailError) {
-    emailFailed = true;
-    console.error("Lead email delivery failed", emailError);
+    await sendLeadConfirmationEmail(payload);
+  } catch (error) {
+    console.error("Lead confirmation email failed:", error);
   }
 
   return {
     success: true,
-    message: emailFailed
-      ? "Ihre Anfrage wurde gespeichert. Die E-Mail-Bestätigung konnte gerade nicht versendet werden."
-      : "Ihre Anfrage wurde erfolgreich übermittelt.",
+    message: "Ihre Anfrage wurde erfolgreich übermittelt.",
   };
 }
 
