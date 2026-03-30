@@ -1,8 +1,13 @@
 import type { LeadEmailPayload } from "@/lib/types/leads";
+import { getInquiryCategoryFromLeadType } from "@/lib/leads/inquiry";
+
+function getLeadLabel(lead: LeadEmailPayload) {
+  return lead.inquiryCategory ?? getInquiryCategoryFromLeadType(lead.type);
+}
 
 function renderLeadDetails(lead: LeadEmailPayload) {
   return [
-    ["Anfrageart", lead.type],
+    ["Anfragekategorie", getLeadLabel(lead)],
     ["Vorname", lead.firstName],
     ["Nachname", lead.lastName],
     ["E-Mail", lead.email],
@@ -23,7 +28,7 @@ function renderLeadDetails(lead: LeadEmailPayload) {
 
 export function buildLeadNotificationTemplate(lead: LeadEmailPayload) {
   const rows = renderLeadDetails(lead);
-  const subject = `Neue Anfrage (${lead.type.replace("_", " ")}) von ${lead.firstName} ${lead.lastName}`;
+  const subject = `Neue ${getLeadLabel(lead)} von ${lead.firstName} ${lead.lastName}`;
 
   const html = `
     <div style="font-family: Arial, sans-serif; color: #1c1917;">
@@ -58,22 +63,22 @@ export function buildLeadConfirmationTemplate(lead: LeadEmailPayload) {
       <h1 style="font-size: 20px; margin-bottom: 16px;">Vielen Dank für Ihre Nachricht</h1>
       <p style="margin: 0 0 12px;">Hallo ${lead.firstName},</p>
       <p style="margin: 0 0 12px;">
-        wir haben Ihre Anfrage (${lead.type.replace("_", " ")}) erhalten und prüfen sie so schnell wie möglich.
+        wir haben Ihre Anfrage (${getLeadLabel(lead)}) erhalten und prüfen sie so schnell wie möglich.
       </p>
       <p style="margin: 0 0 12px;">
         Wenn Sie bereits Projekt- oder Demo-Informationen geteilt haben, nutzen wir diese zur Vorbereitung des nächsten Schritts.
       </p>
-      <p style="margin: 0;">Nagel Consulting</p>
+      <p style="margin: 0;">Nagel Solutions</p>
     </div>
   `;
 
   const text = [
     `Hallo ${lead.firstName},`,
     "",
-    `wir haben Ihre Anfrage (${lead.type.replace("_", " ")}) erhalten und prüfen sie so schnell wie möglich.`,
+    `wir haben Ihre Anfrage (${getLeadLabel(lead)}) erhalten und prüfen sie so schnell wie möglich.`,
     "Wenn Sie bereits Projekt- oder Demo-Informationen geteilt haben, nutzen wir diese zur Vorbereitung des nächsten Schritts.",
     "",
-    "Nagel Consulting",
+    "Nagel Solutions",
   ].join("\n");
 
   return { subject, html, text };

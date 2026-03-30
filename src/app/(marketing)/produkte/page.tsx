@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { getCompanyInfo } from "@/lib/queries/public/company";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/layout/page-hero";
@@ -90,9 +91,11 @@ export default function ProduktePage() {
                   {product.audience}
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <Button asChild>
-                    <Link href="/kontakt">Produkt besprechen</Link>
-                  </Button>
+                  <InquiryButton
+                    label="Anfrage stellen"
+                    inquiryCategory="Standardisierte Lösungsanfrage"
+                    source={`produkte-${product.title}`}
+                  />
                   <Button asChild variant="secondary">
                     <Link href="/demo">Passende Demo ansehen</Link>
                   </Button>
@@ -116,9 +119,11 @@ export default function ProduktePage() {
             </p>
           </div>
           <div className="flex flex-col gap-3 lg:items-start">
-            <Button asChild>
-              <Link href="/kontakt">Anfrage stellen</Link>
-            </Button>
+            <InquiryButton
+              label="Anfrage stellen"
+              inquiryCategory="Standardisierte Lösungsanfrage"
+              source="produkte-abschluss"
+            />
             <Button asChild variant="secondary">
               <Link href="/loesungen">Zu den Lösungen</Link>
             </Button>

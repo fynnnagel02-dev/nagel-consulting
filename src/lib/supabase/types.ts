@@ -197,6 +197,7 @@ export type Database = {
           employee_count_range: string | null;
           first_name: string;
           id: string;
+          inquiry_category: string | null;
           industry: string | null;
           internal_notes: string | null;
           last_name: string;
@@ -219,6 +220,7 @@ export type Database = {
           employee_count_range?: string | null;
           first_name: string;
           id?: string;
+          inquiry_category?: string | null;
           industry?: string | null;
           internal_notes?: string | null;
           last_name: string;
@@ -241,6 +243,7 @@ export type Database = {
           employee_count_range?: string | null;
           first_name?: string;
           id?: string;
+          inquiry_category?: string | null;
           industry?: string | null;
           internal_notes?: string | null;
           last_name?: string;

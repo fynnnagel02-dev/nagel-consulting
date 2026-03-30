@@ -27,7 +27,7 @@ export function HomeTransformationSection() {
       <div className="space-y-8">
         <SectionIntro
           eyebrow="Kurz erklärt"
-          title="Nagel Consulting übersetzt gewachsene Abläufe in digitale Struktur."
+          title="Nagel Solutions übersetzt gewachsene Abläufe in digitale Struktur."
           lead="Im Zentrum stehen keine Dashboards, sondern belastbare Arbeitsflüsse: klare Zuständigkeiten, sauber geführte Daten und Prozesse, die auch bei Wachstum kontrollierbar bleiben."
         />
         <div className="grid gap-5 lg:grid-cols-3">

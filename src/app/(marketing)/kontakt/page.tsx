@@ -1,4 +1,5 @@
 import { getCompanyInfo } from "@/lib/queries/public/company";
+import { OFFICIAL_COMPANY } from "@/lib/brand/company";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/layout/page-hero";
 import { SectionShell } from "@/components/layout/section-shell";
@@ -31,14 +32,18 @@ export default async function ContactPage() {
           <div className="rounded-[32px] border border-[var(--color-border)] bg-white p-8">
             <div className="mb-8 space-y-3">
               <h2 className="font-display text-3xl text-[var(--color-text)]">
-                Projektanfrage
+                Anfrage stellen
               </h2>
               <p className="text-base leading-8 text-[var(--color-muted)]">
                 Beschreiben Sie kurz den Prozess, der heute unnötig viel
                 Abstimmung, Mehrfachpflege oder Unklarheit erzeugt.
               </p>
             </div>
-            <ContactForm />
+            <ContactForm
+              initialInquiryCategory="Beratungsanfrage"
+              source="kontaktseite"
+              submitLabel="Anfrage stellen"
+            />
           </div>
 
           <div className="space-y-6">
@@ -64,9 +69,10 @@ export default async function ContactPage() {
                 Alternativer Kontaktweg
               </h3>
               <div className="mt-5 space-y-2 text-sm leading-7 text-[var(--color-muted)]">
-                {company?.primary_email ? <p>{company.primary_email}</p> : null}
-                {company?.primary_phone ? <p>{company.primary_phone}</p> : null}
-                {company?.city ? <p>{company.city}</p> : null}
+                <p>{OFFICIAL_COMPANY.email}</p>
+                <p>{OFFICIAL_COMPANY.addressLine1}</p>
+                <p>{`${OFFICIAL_COMPANY.postalCode} ${OFFICIAL_COMPANY.city}`}</p>
+                <p>{OFFICIAL_COMPANY.country}</p>
               </div>
             </div>
           </div>

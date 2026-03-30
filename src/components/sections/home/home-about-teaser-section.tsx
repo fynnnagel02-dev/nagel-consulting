@@ -8,9 +8,9 @@ export function HomeAboutTeaserSection() {
     <SectionShell>
       <div className="grid gap-10 lg:grid-cols-[0.9fr,1.1fr]">
         <SectionIntro
-          eyebrow="Über Nagel Consulting"
+          eyebrow="Über Nagel Solutions"
           title="Technische Lösungen sind nur dann gut, wenn sie operative Verantwortung wirklich stützen."
-          lead="Nagel Consulting verbindet strukturiertes Denken, moderne Webarchitektur und einen klaren Blick auf reale Unternehmensabläufe. Im Mittelpunkt steht nicht die Technologie als Selbstzweck, sondern die Frage, wie Prozesse verlässlicher, transparenter und wartbarer werden."
+          lead="Nagel Solutions verbindet strukturiertes Denken, moderne Webarchitektur und einen klaren Blick auf reale Unternehmensabläufe. Im Mittelpunkt steht nicht die Technologie als Selbstzweck, sondern die Frage, wie Prozesse verlässlicher, transparenter und wartbarer werden."
         />
         <div className="space-y-6">
           <p className="text-base leading-8 text-[var(--color-text)]">

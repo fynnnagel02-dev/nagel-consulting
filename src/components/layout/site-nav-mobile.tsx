@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import type { NavItem } from "@/lib/navigation/site-nav";
-import { Button } from "@/components/ui/button";
 import { MenuIcon, XIcon } from "@/components/ui/icons";
 
 export function SiteNavMobile({
@@ -42,9 +42,13 @@ export function SiteNavMobile({
             ))}
           </nav>
           <div className="mt-6">
-            <Button asChild className="w-full">
-              <Link href={cta.href} scroll={false}>{cta.label}</Link>
-            </Button>
+            <InquiryButton
+              className="w-full"
+              label={cta.label}
+              inquiryCategory="Beratungsanfrage"
+              source="mobile-navigation"
+              onAfterOpen={() => setOpen(false)}
+            />
           </div>
         </div>
       ) : null}

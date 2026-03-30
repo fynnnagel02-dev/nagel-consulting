@@ -20,7 +20,7 @@ export async function generateMetadata() {
   return buildMetadata({
     title: "Digitale Prozessstruktur für operative Unternehmen",
     description:
-      "Nagel Consulting ersetzt Excel- und papierbasierte Abläufe durch strukturierte, sichere Webanwendungen für Handwerk, Dienstleistung und operative KMU.",
+      "Nagel Solutions ersetzt Excel- und papierbasierte Abläufe durch strukturierte, sichere Webanwendungen für Handwerk, Dienstleistung und operative KMU.",
     company,
   });
 }

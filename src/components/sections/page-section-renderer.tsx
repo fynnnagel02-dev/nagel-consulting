@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Accordion } from "@/components/ui/accordion";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
 import { Button } from "@/components/ui/button";
@@ -63,7 +64,7 @@ export function PageSectionRenderer({
               section.data_json &&
               "label" in section.data_json
                 ? String(section.data_json.label)
-                : "Kontakt aufnehmen";
+                : "Anfrage stellen";
 
             return (
               <SectionShell key={section.id} tone="alt" spacing="compact">
@@ -80,9 +81,17 @@ export function PageSectionRenderer({
                       </p>
                     ) : null}
                   </div>
-                  <Button asChild>
-                    <Link href={href}>{label}</Link>
-                  </Button>
+                  {href === "/kontakt" ? (
+                    <InquiryButton
+                      label={label}
+                      inquiryCategory="Beratungsanfrage"
+                      source={`page-section-${section.id}`}
+                    />
+                  ) : (
+                    <Button asChild>
+                      <Link href={href}>{label}</Link>
+                    </Button>
+                  )}
                 </div>
               </SectionShell>
             );

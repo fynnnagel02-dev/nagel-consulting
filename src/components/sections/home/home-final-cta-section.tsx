@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { SectionShell } from "@/components/layout/section-shell";
 import { Button } from "@/components/ui/button";
 
@@ -27,9 +28,13 @@ export function HomeFinalCtaSection({
           </p>
         </div>
         <div className="flex flex-col gap-3 lg:items-start lg:justify-end">
-          <Button asChild size="lg" variant="inverse">
-            <Link href={primaryCta.href}>{primaryCta.label}</Link>
-          </Button>
+          <InquiryButton
+            size="lg"
+            variant="inverse"
+            label={primaryCta.label}
+            inquiryCategory="Beratungsanfrage"
+            source="homepage-final-cta"
+          />
           <Button asChild size="lg" variant="contrast">
             <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
           </Button>

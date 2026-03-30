@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { getCompanyInfo } from "@/lib/queries/public/company";
+import { OFFICIAL_COMPANY } from "@/lib/brand/company";
 import { footerNavigation } from "@/lib/navigation/site-nav";
 import { Container } from "@/components/layout/container";
 
 export async function SiteFooter() {
-  const company = await getCompanyInfo().catch(() => null);
-  const companyName = company?.company_name ?? "Nagel Consulting";
+  const companyName = OFFICIAL_COMPANY.name;
 
   return (
     <footer className="border-t border-[var(--color-border)] bg-white py-16">
@@ -25,9 +24,10 @@ export async function SiteFooter() {
               </p>
             </div>
             <ul className="space-y-3 text-sm text-[var(--color-muted)]">
-              {company?.primary_email ? <li>{company.primary_email}</li> : null}
-              {company?.primary_phone ? <li>{company.primary_phone}</li> : null}
-              {company?.city ? <li>{company.city}</li> : null}
+              <li>{OFFICIAL_COMPANY.email}</li>
+              <li>{OFFICIAL_COMPANY.addressLine1}</li>
+              <li>{`${OFFICIAL_COMPANY.postalCode} ${OFFICIAL_COMPANY.city}`}</li>
+              <li>{OFFICIAL_COMPANY.country}</li>
             </ul>
           </div>
 

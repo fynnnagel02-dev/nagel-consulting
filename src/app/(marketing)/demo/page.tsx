@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { getCompanyInfo } from "@/lib/queries/public/company";
 import { getActiveSolutionDemos } from "@/lib/queries/public/demos";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -115,9 +116,11 @@ export default async function DemoPage() {
               Prozesssituation sich am besten als Einstieg eignet.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild>
-                <Link href="/kontakt">Demo anfragen</Link>
-              </Button>
+              <InquiryButton
+                label="Beratung anfragen"
+                inquiryCategory="Beratungsanfrage"
+                source="demo-page"
+              />
               <Button asChild variant="secondary">
                 <Link href="/loesungen">Zu den Lösungen</Link>
               </Button>

@@ -1,9 +1,8 @@
-import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { getCompanyInfo } from "@/lib/queries/public/company";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/layout/page-hero";
 import { SectionShell } from "@/components/layout/section-shell";
-import { Button } from "@/components/ui/button";
 
 export async function generateMetadata() {
   const company = await getCompanyInfo().catch(() => null);
@@ -11,7 +10,7 @@ export async function generateMetadata() {
   return buildMetadata({
     title: "Über uns",
     description:
-      "Arbeitsweise, Haltung und Anspruch von Nagel Consulting bei der Digitalisierung operativer Unternehmensabläufe.",
+      "Arbeitsweise, Haltung und Anspruch von Nagel Solutions bei der Digitalisierung operativer Unternehmensabläufe.",
     company,
   });
 }
@@ -20,9 +19,9 @@ export default function AboutPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Über Nagel Consulting"
+        eyebrow="Über Nagel Solutions"
         title="Seriöse Digitalisierung beginnt mit Struktur, nicht mit Lautstärke."
-        lead="Nagel Consulting entwickelt digitale Arbeitsabläufe für Unternehmen, die verlässlich funktionieren müssen. Im Zentrum stehen Klarheit, Verantwortlichkeit und eine technische Basis, die das Tagesgeschäft entlastet."
+        lead="Nagel Solutions entwickelt digitale Arbeitsabläufe für Unternehmen, die verlässlich funktionieren müssen. Im Zentrum stehen Klarheit, Verantwortlichkeit und eine technische Basis, die das Tagesgeschäft entlastet."
       />
 
       <SectionShell>
@@ -40,7 +39,7 @@ export default function AboutPage() {
             <p>
               Viele Unternehmen arbeiten bereits mit digitalen Hilfsmitteln, aber
               nicht mit einer klaren Prozessstruktur. Genau dort setzt Nagel
-              Consulting an: zwischen Tagesgeschäft, Verantwortung und sauberer
+              Solutions an: zwischen Tagesgeschäft, Verantwortung und sauberer
               technischer Umsetzung.
             </p>
             <p>
@@ -98,9 +97,11 @@ export default function AboutPage() {
               passenden Lösungsweg zu sortieren.
             </p>
           </div>
-          <Button asChild>
-            <Link href="/kontakt">Gespräch anfragen</Link>
-          </Button>
+          <InquiryButton
+            label="Beratung anfragen"
+            inquiryCategory="Beratungsanfrage"
+            source="about-page"
+          />
         </div>
       </SectionShell>
     </main>

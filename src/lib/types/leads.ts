@@ -1,10 +1,12 @@
 import type { Database } from "@/lib/supabase/types";
+import type { InquiryCategory } from "@/lib/leads/inquiry";
 
 export type LeadType = Database["public"]["Enums"]["lead_type"];
 export type LeadStatus = Database["public"]["Enums"]["lead_status"];
 
 export type LeadEmailPayload = {
   type: LeadType;
+  inquiryCategory: InquiryCategory | null;
   firstName: string;
   lastName: string;
   email: string;

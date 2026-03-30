@@ -25,22 +25,22 @@ insert into public.company_info (
 )
 values (
   'default',
-  'Nagel Consulting',
+  'Nagel Solutions',
   'Sichere Software für operative Unternehmen',
-  'Nagel Consulting unterstützt kleine und mittlere Unternehmen dabei, tabellengetriebene Abläufe durch sichere, wartbare Webanwendungen zu ersetzen.',
+  'Nagel Solutions unterstützt kleine und mittlere Unternehmen dabei, tabellengetriebene Abläufe durch sichere, wartbare Webanwendungen zu ersetzen.',
   'Praxisnahe digitale Systeme entwickeln, die operative Reibung reduzieren und Vertrauen schaffen.',
   'Der verlässliche Softwarepartner für operative Unternehmen werden, die Klarheit, Struktur und Sicherheit benötigen.',
-  'hello@nagel-consulting.de',
-  'contact@nagel-consulting.de',
-  '+49 000 000000',
-  'Beispielstraße 1',
-  '10115',
-  'Berlin',
+  'info@nagel-solutions.com',
+  'info@nagel-solutions.com',
+  null,
+  'Bahrenfelder Steindamm 48',
+  '22761',
+  'Hamburg',
   'Deutschland',
   'Einzelunternehmen',
   'Fynn Nagel',
-  'Nagel Consulting | Individuelle Software für operative Unternehmen',
-  'Nagel Consulting entwickelt sichere Webanwendungen für Handwerksbetriebe, Dienstleister und operative Teams.',
+  'Nagel Solutions | Individuelle Software für operative Unternehmen',
+  'Nagel Solutions entwickelt sichere Webanwendungen für Handwerksbetriebe, Dienstleister und operative Teams.',
   'Beratung anfragen',
   '/kontakt',
   'Lösungen ansehen',
@@ -82,18 +82,97 @@ values
   (
     'imprint',
     'Impressum',
-    'Ersetzen Sie dieses Platzhalter-Impressum vor dem Go-live durch die rechtlich erforderlichen Unternehmensangaben.',
-    'Impressum | Nagel Consulting',
-    'Rechtliche Anbieterkennzeichnung von Nagel Consulting.',
+    'Angaben gemäß § 5 TMG
+
+Fynn Nagel
+Nagel Solutions
+Bahrenfelder Steindamm 48
+22761 Hamburg
+Deutschland
+
+Kontakt
+E-Mail: info@nagel-solutions.com
+
+Umsatzsteuer
+Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
+
+Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+Fynn Nagel
+Bahrenfelder Steindamm 48
+22761 Hamburg
+Deutschland
+
+Haftung für Inhalte
+Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
+
+Haftung für Links
+Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.
+
+Urheberrecht
+Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.',
+    'Impressum | Nagel Solutions',
+    'Rechtliche Anbieterkennzeichnung von Nagel Solutions.',
     timezone('utc', now()),
     true
   ),
   (
     'privacy_policy',
     'Datenschutzerklärung',
-    'Ersetzen Sie diese Platzhalter-Datenschutzerklärung vor dem Go-live durch Ihre endgültigen Datenschutzhinweise.',
-    'Datenschutzerklärung | Nagel Consulting',
-    'Datenschutzinformationen von Nagel Consulting.',
+    '1. Allgemeine Hinweise
+Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen, insbesondere der DSGVO.
+
+2. Verantwortlicher
+Fynn Nagel
+Nagel Solutions
+Bahrenfelder Steindamm 48
+22761 Hamburg
+Deutschland
+E-Mail: info@nagel-solutions.com
+
+3. Hosting
+Unsere Website wird auf einer modernen Hosting-Infrastruktur betrieben. Dabei können technische Zugriffsdaten verarbeitet werden, die erforderlich sind, um die Website stabil und sicher bereitzustellen.
+
+4. Backend und Datenbank
+Zur Verarbeitung und Speicherung von Daten nutzen wir eine cloudbasierte Infrastruktur. Personenbezogene Daten werden nur verarbeitet, soweit dies für den Betrieb der Website und die Bearbeitung von Anfragen erforderlich ist.
+
+5. Datenverarbeitung bei Anfragen
+- Name
+- E-Mail-Adresse
+- Inhalte Ihrer Anfrage
+
+6. Zweck
+- Bearbeitung von Anfragen
+- Kommunikation
+- Angebotserstellung
+
+7. Rechtsgrundlage
+Art. 6 Abs. 1 lit. b DSGVO (Anfragen)
+Art. 6 Abs. 1 lit. f DSGVO (Betrieb der Website)
+
+8. Speicherdauer
+Daten werden nur so lange gespeichert, wie notwendig.
+
+9. Ihre Rechte
+- Auskunft
+- Berichtigung
+- Löschung
+- Widerspruch
+- Einschränkung
+- Datenübertragbarkeit
+
+10. Datensicherheit
+Technische und organisatorische Maßnahmen zum Schutz der Daten.
+
+11. Verschlüsselung
+Diese Website nutzt eine sichere Verbindung (SSL/TLS).
+
+12. Server-Logs
+Technische Daten können zur Sicherstellung des Betriebs gespeichert werden.
+
+13. Änderungen
+Diese Datenschutzerklärung kann angepasst werden.',
+    'Datenschutzerklärung | Nagel Solutions',
+    'Datenschutzinformationen von Nagel Solutions.',
     timezone('utc', now()),
     true
   )
@@ -148,7 +227,7 @@ insert into public.faq_items (question, answer, category, sort_order, is_active)
 values
   (
     'Arbeiten Sie nur mit großen Unternehmen?',
-    'Nein. Nagel Consulting konzentriert sich auf kleine und mittlere Unternehmen, die praxisnahe Systeme statt schwerfälliger Konzernlogik brauchen.',
+    'Nein. Nagel Solutions konzentriert sich auf kleine und mittlere Unternehmen, die praxisnahe Systeme statt schwerfälliger Konzernlogik brauchen.',
     'general',
     0,
     true
@@ -195,7 +274,7 @@ values
     'Handwerksbetriebe und Serviceteams',
     'Wichtige Anfragen und operative Aktualisierungen sind oft über Tabellen, Nachrichten und Einzelwissen verteilt.',
     'Schafft einen strukturierten Ort, an dem operative Arbeit verlässlich gesteuert werden kann.',
-    'Operatives Workflow-Zentrum | Nagel Consulting',
+    'Operatives Workflow-Zentrum | Nagel Solutions',
     'Interne Workflow-Software für operative Unternehmen, die Struktur und Transparenz brauchen.',
     true,
     true,
@@ -212,7 +291,7 @@ values
     'Lokale Dienstleistungsunternehmen',
     'Erste Kundeninformationen treffen oft unvollständig ein und führen zu manueller Nacharbeit und Verzögerungen.',
     'Schafft einen verlässlicheren ersten Schritt für Ihr Team und Ihre Kunden.',
-    'Portal für Kundenanfragen | Nagel Consulting',
+    'Portal für Kundenanfragen | Nagel Solutions',
     'Digitalisiert Anfrageaufnahme und Qualifizierung für serviceorientierte Unternehmen.',
     true,
     true,
@@ -229,7 +308,7 @@ values
     'Operative Unternehmen mit Außendienstteams',
     'Planung, Statusmeldungen und Übergaben sind oft fragmentiert und nur schwer verlässlich nachzuvollziehen.',
     'Verbessert Transparenz und reduziert Abstimmungsaufwand über den gesamten Servicezyklus.',
-    'Anwendung zur Einsatzkoordination | Nagel Consulting',
+    'Anwendung zur Einsatzkoordination | Nagel Solutions',
     'Koordiniert Außendienstteams mit strukturierten Abläufen und klarer operativer Sichtbarkeit.',
     true,
     false,
@@ -374,7 +453,7 @@ values
     'hero',
     'Softwaresysteme für operative Unternehmen',
     'Excel-Chaos durch sichere Abläufe ersetzen',
-    'Nagel Consulting entwickelt praxisnahe interne Plattformen und kundennahe Geschäftswerkzeuge für Teams, die Verlässlichkeit, Struktur und Vertrauen benötigen.',
+    'Nagel Solutions entwickelt praxisnahe interne Plattformen und kundennahe Geschäftswerkzeuge für Teams, die Verlässlichkeit, Struktur und Vertrauen benötigen.',
     '{"primaryCtaHref":"/kontakt","primaryCtaLabel":"Beratung anfragen","secondaryCtaHref":"/loesungen","secondaryCtaLabel":"Lösungen ansehen"}'::jsonb,
     0,
     true

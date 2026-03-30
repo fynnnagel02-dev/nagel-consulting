@@ -34,12 +34,12 @@ export type SecurityPillar = {
 
 export function mapCompanyCtas(company: CompanyInfo | null) {
   const primary: Link = {
-    label: company?.primary_cta_label ?? "Projekt anfragen",
+    label: "Beratung anfragen",
     href: company?.primary_cta_href ?? "/kontakt",
   };
 
   const secondary: Link = {
-    label: company?.secondary_cta_label ?? "Demos ansehen",
+    label: "Demo ansehen",
     href: company?.secondary_cta_href ?? "/demo",
   };
 

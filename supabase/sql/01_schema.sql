@@ -143,6 +143,7 @@ create table if not exists public.leads (
   employee_count_range text,
   current_tool text,
   process_to_digitize text,
+  inquiry_category text,
   message text,
   source text,
   consent_privacy boolean not null,

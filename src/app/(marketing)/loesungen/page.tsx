@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { getCompanyInfo } from "@/lib/queries/public/company";
 import { getActiveSolutions } from "@/lib/queries/public/solutions";
 import { getPageSections } from "@/lib/queries/public/page-sections";
@@ -9,7 +10,6 @@ import { PageHero } from "@/components/layout/page-hero";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
 import { SolutionPreview } from "@/components/content/solution-preview";
-import { Button } from "@/components/ui/button";
 import { PageSectionRenderer } from "@/components/sections/page-section-renderer";
 
 export async function generateMetadata() {
@@ -34,7 +34,7 @@ export default async function SolutionsPage() {
       <PageHero
         eyebrow="Lösungen"
         title="Strukturierte Anwendungen für Prozesse, die im Alltag zuverlässig funktionieren müssen."
-        lead="Nagel Consulting entwickelt digitale Lösungen dort, wo operative Abläufe heute durch Mehrfacheingaben, unklare Zuständigkeiten und informelle Abstimmung gebremst werden."
+        lead="Nagel Solutions entwickelt digitale Lösungen dort, wo operative Abläufe heute durch Mehrfacheingaben, unklare Zuständigkeiten und informelle Abstimmung gebremst werden."
       />
 
       <SectionShell spacing="compact">
@@ -67,9 +67,11 @@ export default async function SolutionsPage() {
               Lösungsweg sinnvoll ist und wo der größte Hebel liegt.
             </p>
           </div>
-          <Button asChild>
-            <Link href="/kontakt">Projekt anfragen</Link>
-          </Button>
+          <InquiryButton
+            label="Anfrage stellen"
+            inquiryCategory="Individuelle Projektanfrage"
+            source="solutions-page"
+          />
         </div>
       </SectionShell>
     </main>

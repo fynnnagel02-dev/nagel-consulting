@@ -45,7 +45,16 @@ export function getErrorMessage(error: unknown) {
     return error.message;
   }
 
-  return "An unexpected error occurred.";
+  if (
+    typeof error === "object" &&
+    error !== null &&
+    "message" in error &&
+    typeof error.message === "string"
+  ) {
+    return error.message;
+  }
+
+  return "Bei der Verarbeitung ist ein unerwarteter Fehler aufgetreten.";
 }
 
 export function getZodFieldErrors(error: ZodError): FieldErrors {
@@ -65,7 +74,7 @@ export function validationErrorResult<TData = never>(
 ): ActionResult<TData> {
   return {
     success: false,
-    message: "Please review the submitted fields.",
+    message: "Bitte prüfen Sie die eingegebenen Felder.",
     fieldErrors: getZodFieldErrors(error),
   };
 }

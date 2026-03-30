@@ -16,9 +16,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Nagel Consulting",
+  title: "Nagel Solutions",
   description:
-    "Nagel Consulting digitalisiert operative Abläufe mit strukturierten, sicheren Webanwendungen für Handwerk, Service und mittelständische Unternehmen.",
+    "Nagel Solutions digitalisiert operative Abläufe mit strukturierten, sicheren Webanwendungen für Handwerk, Service und mittelständische Unternehmen.",
 };
 
 export default function RootLayout({

@@ -14,7 +14,7 @@ export function HomeIndustriesSection({
         <SectionIntro
           eyebrow="Branchenfit"
           title="Besonders relevant dort, wo operative Abläufe im Alltag tragen müssen."
-          lead="Nagel Consulting arbeitet für Unternehmen, deren Wertschöpfung von verlässlichen Prozessen abhängt und bei denen Unklarheit unmittelbar Zeit, Qualität oder Verantwortung kostet."
+          lead="Nagel Solutions arbeitet für Unternehmen, deren Wertschöpfung von verlässlichen Prozessen abhängt und bei denen Unklarheit unmittelbar Zeit, Qualität oder Verantwortung kostet."
         />
         <div className="grid gap-6 lg:grid-cols-2">
           {industries.map((industry) => (

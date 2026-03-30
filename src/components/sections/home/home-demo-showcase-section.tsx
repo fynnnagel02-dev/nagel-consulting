@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
 import {
@@ -54,11 +55,14 @@ export function HomeDemoShowcaseSection() {
 
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button asChild>
-            <Link href="/demo">Demos ansehen</Link>
+            <Link href="/demo">Demo ansehen</Link>
           </Button>
-          <Button asChild variant="secondary">
-            <Link href="/kontakt">Demo im Gespräch einordnen</Link>
-          </Button>
+          <InquiryButton
+            variant="secondary"
+            label="Beratung anfragen"
+            inquiryCategory="Beratungsanfrage"
+            source="homepage-demo"
+          />
         </div>
       </div>
     </SectionShell>

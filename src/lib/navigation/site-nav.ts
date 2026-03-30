@@ -19,11 +19,11 @@ export const footerNavigation = {
   leistungen: [
     { href: "/loesungen", label: "Lösungen" },
     { href: "/produkte", label: "Produkte" },
-    { href: "/demo", label: "Demos" },
+    { href: "/demo", label: "Demo" },
     { href: "/sicherheit", label: "Sicherheit" },
   ],
   unternehmen: [
-    { href: "/ueber-uns", label: "Über Nagel Consulting" },
+    { href: "/ueber-uns", label: "Über Nagel Solutions" },
     { href: "/branchen", label: "Branchen" },
     { href: "/wissen", label: "Wissen" },
   ],

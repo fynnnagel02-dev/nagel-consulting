@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { Reveal } from "@/components/motion/reveal";
 import { SectionShell } from "@/components/layout/section-shell";
 import { Button } from "@/components/ui/button";
@@ -27,14 +28,17 @@ export function HomeHeroSection({
               </h1>
             </div>
             <p className="max-w-xl text-lg leading-8 text-[var(--color-muted)]">
-              Nagel Consulting entwickelt digitale Arbeitsabläufe für
+              Nagel Solutions entwickelt digitale Arbeitsabläufe für
               Handwerksbetriebe, Dienstleister und operative KMU, wenn Listen,
               Papierwege und informelle Abstimmung im Alltag nicht mehr tragen.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg">
-                <Link href={primaryCta.href}>{primaryCta.label}</Link>
-              </Button>
+              <InquiryButton
+                size="lg"
+                label={primaryCta.label}
+                inquiryCategory="Beratungsanfrage"
+                source="homepage-hero"
+              />
               <Button asChild variant="secondary" size="lg">
                 <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
               </Button>

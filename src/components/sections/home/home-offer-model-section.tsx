@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
 import { Button } from "@/components/ui/button";
@@ -77,9 +78,11 @@ export function HomeOfferModelSection({
             <Button asChild variant="secondary">
               <Link href="/loesungen">Zu den Lösungen</Link>
             </Button>
-            <Button asChild>
-              <Link href="/kontakt">Passenden Weg besprechen</Link>
-            </Button>
+            <InquiryButton
+              label="Anfrage stellen"
+              inquiryCategory="Individuelle Projektanfrage"
+              source="homepage-offer-model"
+            />
           </div>
         </div>
       </div>

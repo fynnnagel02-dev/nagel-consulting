@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { getCompanyInfo } from "@/lib/queries/public/company";
 import { getActiveIndustries } from "@/lib/queries/public/industries";
 import { mapIndustryScenarios } from "@/lib/mappers/marketing";
@@ -7,7 +7,6 @@ import { PageHero } from "@/components/layout/page-hero";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
 import { IndustryScenarioCard } from "@/components/content/industry-scenario";
-import { Button } from "@/components/ui/button";
 
 export async function generateMetadata() {
   const company = await getCompanyInfo().catch(() => null);
@@ -30,7 +29,7 @@ export default async function IndustriesPage() {
       <PageHero
         eyebrow="Branchen"
         title="Besonders wirksam dort, wo operative Verantwortung im Tagesgeschäft entsteht."
-        lead="Nagel Consulting richtet sich an Unternehmen, deren Prozesse nicht nur dokumentiert, sondern täglich zuverlässig geführt werden müssen."
+        lead="Nagel Solutions richtet sich an Unternehmen, deren Prozesse nicht nur dokumentiert, sondern täglich zuverlässig geführt werden müssen."
       />
 
       <SectionShell spacing="compact">
@@ -62,9 +61,11 @@ export default async function IndustriesPage() {
               Ansatzpunkt.
             </p>
           </div>
-          <Button asChild>
-            <Link href="/kontakt">Use Case besprechen</Link>
-          </Button>
+          <InquiryButton
+            label="Anfrage stellen"
+            inquiryCategory="Individuelle Projektanfrage"
+            source="industries-page"
+          />
         </div>
       </SectionShell>
     </main>

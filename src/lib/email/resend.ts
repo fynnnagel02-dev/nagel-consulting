@@ -1,6 +1,7 @@
 import "server-only";
 
 import { Resend } from "resend";
+import { OFFICIAL_COMPANY } from "@/lib/brand/company";
 import type { LeadEmailPayload } from "@/lib/types/leads";
 import { getEnv } from "@/lib/utils/env";
 import {
@@ -20,7 +21,7 @@ export async function sendLeadNotificationEmail(lead: LeadEmailPayload) {
 
   return resend.emails.send({
     from: env.RESEND_FROM_EMAIL,
-    to: env.LEAD_NOTIFICATION_EMAIL,
+    to: OFFICIAL_COMPANY.email,
     subject: template.subject,
     html: template.html,
     text: template.text,

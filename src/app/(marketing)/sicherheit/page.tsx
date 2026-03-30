@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InquiryButton } from "@/components/forms/inquiry-button";
 import { getCompanyInfo } from "@/lib/queries/public/company";
 import { getActiveSecurityFeatures } from "@/lib/queries/public/security";
 import { mapSecurityPillars } from "@/lib/mappers/marketing";
@@ -6,7 +7,6 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/layout/page-hero";
 import { SectionShell } from "@/components/layout/section-shell";
 import { TrustPillar } from "@/components/content/trust-pillar";
-import { Button } from "@/components/ui/button";
 
 export async function generateMetadata() {
   const company = await getCompanyInfo().catch(() => null);
@@ -63,9 +63,11 @@ export default async function SecurityPage() {
                 Gerade bei internen Freigaben, sensiblen Kundendaten oder
                 mehrstufigen Zuständigkeiten lohnt sich eine frühe Einordnung.
               </p>
-              <Button asChild>
-                <Link href="/kontakt">Kontakt aufnehmen</Link>
-              </Button>
+              <InquiryButton
+                label="Anfrage stellen"
+                inquiryCategory="Sicherheitslösung"
+                source="security-page"
+              />
             </div>
           </div>
         </div>

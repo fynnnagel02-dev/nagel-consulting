@@ -1,10 +1,16 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useActionState, useState } from "react";
-import { submitProjectRequest } from "@/app/actions/leads";
+import { useActionState, useEffect, useState } from "react";
+import { submitInquiryLead } from "@/app/actions/leads";
 import type { ActionResult } from "@/lib/types/actions";
+import {
+  defaultInquiryCategory,
+  inquiryCategoryOptions,
+  type InquiryCategory,
+} from "@/lib/leads/inquiry";
 import { Button } from "@/components/ui/button";
+import { FormSelect } from "@/components/ui/form-select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -13,18 +19,61 @@ const initialState: ActionResult = {
   message: "",
 };
 
-export function ContactForm() {
+export function ContactForm({
+  initialInquiryCategory = defaultInquiryCategory,
+  source = "kontaktseite",
+  relatedSolutionSlug,
+  relatedDemoId,
+  submitLabel = "Anfrage stellen",
+  onSuccess,
+}: {
+  initialInquiryCategory?: InquiryCategory;
+  source?: string;
+  relatedSolutionSlug?: string;
+  relatedDemoId?: string;
+  submitLabel?: string;
+  onSuccess?: () => void;
+}) {
   const [consent, setConsent] = useState(true);
+  const [inquiryCategory, setInquiryCategory] = useState<InquiryCategory>(
+    initialInquiryCategory,
+  );
   const [state, formAction, pending] = useActionState(
     async (_previousState: ActionResult, formData: FormData) => {
-      return submitProjectRequest(formData);
+      return submitInquiryLead(formData);
     },
     initialState,
   );
 
+  useEffect(() => {
+    setInquiryCategory(initialInquiryCategory);
+  }, [initialInquiryCategory]);
+
+  useEffect(() => {
+    if (!state.success || !onSuccess) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => {
+      onSuccess();
+    }, 1400);
+
+    return () => window.clearTimeout(timeout);
+  }, [onSuccess, state.success]);
+
   return (
     <form action={formAction} className="space-y-5">
-      <input type="hidden" name="source" value="kontaktseite" />
+      <input type="hidden" name="source" value={source} />
+      {relatedSolutionSlug ? (
+        <input
+          type="hidden"
+          name="related_solution_slug"
+          value={relatedSolutionSlug}
+        />
+      ) : null}
+      {relatedDemoId ? (
+        <input type="hidden" name="related_demo_id" value={relatedDemoId} />
+      ) : null}
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Vorname" name="first_name" error={state.fieldErrors?.first_name?.[0]}>
           <Input id="first_name" name="first_name" autoComplete="given-name" required />
@@ -57,7 +106,23 @@ export function ContactForm() {
       </div>
 
       <Field
-        label="Welchen Ablauf möchten Sie digitalisieren?"
+        label="Anfrageart"
+        name="inquiry_category"
+        error={state.fieldErrors?.inquiry_category?.[0]}
+      >
+        <FormSelect
+          name="inquiry_category"
+          value={inquiryCategory}
+          onValueChange={(value) => setInquiryCategory(value as InquiryCategory)}
+          options={inquiryCategoryOptions.map((option) => ({
+            value: option.value,
+            label: option.label,
+          }))}
+        />
+      </Field>
+
+      <Field
+        label="Welchen Ablauf oder welches Anliegen möchten Sie besprechen?"
         name="process_to_digitize"
         error={state.fieldErrors?.process_to_digitize?.[0]}
       >
@@ -65,7 +130,7 @@ export function ContactForm() {
           id="process_to_digitize"
           name="process_to_digitize"
           required
-          placeholder="Beschreiben Sie kurz den heutigen Ablauf, die Beteiligten und wo Reibung entsteht."
+          placeholder="Beschreiben Sie kurz den aktuellen Ablauf oder Ihr Anliegen und wo heute Reibung entsteht."
         />
       </Field>
 
@@ -73,7 +138,6 @@ export function ContactForm() {
         <Textarea
           id="message"
           name="message"
-          required
           placeholder="Gibt es bereits bestehende Werkzeuge, besondere Anforderungen oder einen gewünschten Zeitrahmen?"
         />
       </Field>
@@ -95,13 +159,11 @@ export function ContactForm() {
 
       <div className="space-y-3">
         <Button type="submit" size="lg" disabled={pending}>
-          {pending ? "Anfrage wird gesendet..." : "Projekt anfragen"}
+          {pending ? "Anfrage wird gesendet..." : submitLabel}
         </Button>
         {state.message ? (
           <p
-            className={
-              state.success ? "text-sm text-green-700" : "text-sm text-rose-700"
-            }
+            className={state.success ? "text-sm text-green-700" : "text-sm text-rose-700"}
           >
             {state.message}
           </p>
