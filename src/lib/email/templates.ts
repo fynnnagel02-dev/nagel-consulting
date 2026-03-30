@@ -81,6 +81,25 @@ function renderInternalField(label: string, value: string) {
   `;
 }
 
+function renderMessageCard({
+  title,
+  content,
+}: {
+  title: string;
+  content: string;
+}) {
+  return `
+    <div style="margin-bottom:16px; border:1px solid #e5e7eb; border-radius:18px; padding:18px 20px; background:#ffffff;">
+      <div style="margin-bottom:8px; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#2f4a67;">
+        ${escapeHtml(title)}
+      </div>
+      <div style="font-size:15px; line-height:1.8; color:#1f2937;">
+        ${content}
+      </div>
+    </div>
+  `;
+}
+
 export function buildLeadNotificationTemplate(lead: LeadEmailPayload) {
   const subject = "Neue Anfrage über die Website";
   const fields = [
@@ -119,13 +138,23 @@ export function buildLeadConfirmationTemplate(lead: LeadEmailPayload) {
   const html = renderShell({
     eyebrow: "Anfragebestätigung",
     title: "Vielen Dank für Ihre Anfrage",
-    body: `
-      <p style="margin:0 0 14px;">Hallo ${escapeHtml(lead.firstName)},</p>
-      <p style="margin:0 0 14px;">Wir haben Ihre Anfrage erfolgreich erhalten und prüfen Ihr Anliegen derzeit intern.</p>
-      <p style="margin:0 0 14px;">Nagel Solutions wird sich zeitnah mit einer Rückmeldung bei Ihnen melden.</p>
-      <p style="margin:0 0 14px;">Falls Sie in der Zwischenzeit weitere Informationen ergänzen möchten, können Sie jederzeit auf diese E-Mail antworten oder uns direkt unter <a href="mailto:${escapeHtml(OFFICIAL_COMPANY.email)}" style="color:#2f4a67; text-decoration:none;">${escapeHtml(OFFICIAL_COMPANY.email)}</a> kontaktieren.</p>
-      <p style="margin:24px 0 0;">Mit freundlichen Grüßen<br />Nagel Solutions</p>
-    `,
+    intro: `Hallo ${lead.firstName},`,
+    body: [
+      renderMessageCard({
+        title: "Eingang bestätigt",
+        content:
+          "<p style=\"margin:0 0 12px;\">Wir haben Ihre Anfrage erfolgreich erhalten und prüfen Ihr Anliegen derzeit intern.</p><p style=\"margin:0;\">Nagel Solutions wird sich zeitnah mit einer Rückmeldung bei Ihnen melden.</p>",
+      }),
+      renderMessageCard({
+        title: "Ergänzende Informationen",
+        content: `<p style="margin:0;">Falls Sie in der Zwischenzeit weitere Informationen ergänzen möchten, können Sie jederzeit auf diese E-Mail antworten oder uns direkt unter <a href="mailto:${escapeHtml(
+          OFFICIAL_COMPANY.email,
+        )}" style="color:#2f4a67; text-decoration:none;">${escapeHtml(
+          OFFICIAL_COMPANY.email,
+        )}</a> kontaktieren.</p>`,
+      }),
+      `<p style="margin:24px 0 0;">Mit freundlichen Grüßen<br />Nagel Solutions</p>`,
+    ].join(""),
     footer: `${escapeHtml(OFFICIAL_COMPANY.name)} · ${escapeHtml(
       OFFICIAL_COMPANY.addressLine1,
     )} · ${escapeHtml(`${OFFICIAL_COMPANY.postalCode} ${OFFICIAL_COMPANY.city}`)}`,

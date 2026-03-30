@@ -9,6 +9,11 @@ import {
   buildLeadNotificationTemplate,
 } from "@/lib/email/templates";
 
+function getBrandedSender() {
+  const env = getEnv();
+  return `"Nagel Solutions" <${env.RESEND_FROM_EMAIL}>`;
+}
+
 function getResendClient() {
   const env = getEnv();
   return new Resend(env.RESEND_API_KEY);
@@ -20,7 +25,7 @@ export async function sendLeadNotificationEmail(lead: LeadEmailPayload) {
   const template = buildLeadNotificationTemplate(lead);
 
   return resend.emails.send({
-    from: env.RESEND_FROM_EMAIL,
+    from: getBrandedSender(),
     to: env.LEAD_NOTIFICATION_EMAIL,
     replyTo: lead.email,
     subject: template.subject,
@@ -30,12 +35,11 @@ export async function sendLeadNotificationEmail(lead: LeadEmailPayload) {
 }
 
 export async function sendLeadConfirmationEmail(lead: LeadEmailPayload) {
-  const env = getEnv();
   const resend = getResendClient();
   const template = buildLeadConfirmationTemplate(lead);
 
   return resend.emails.send({
-    from: env.RESEND_FROM_EMAIL,
+    from: getBrandedSender(),
     to: lead.email,
     replyTo: OFFICIAL_COMPANY.email,
     subject: template.subject,
