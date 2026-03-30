@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter, Playfair_Display } from "next/font/google";
+import { AnalyticsGate } from "@/components/consent/analytics-gate";
+import { CookieBanner } from "@/components/consent/cookie-banner";
+import { CookieConsentProvider } from "@/components/consent/cookie-consent-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,7 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className={`${inter.variable} ${playfair.variable}`}>
-      <body>{children}</body>
+      <body>
+        <CookieConsentProvider>
+          {children}
+          <CookieBanner />
+          <AnalyticsGate />
+        </CookieConsentProvider>
+      </body>
     </html>
   );
 }

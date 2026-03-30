@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookieSettingsTrigger } from "@/components/consent/cookie-settings-trigger";
 import { OFFICIAL_COMPANY } from "@/lib/brand/company";
 import { footerNavigation } from "@/lib/navigation/site-nav";
 import { Container } from "@/components/layout/container";
@@ -38,7 +39,10 @@ export async function SiteFooter() {
 
         <div className="mt-6 flex flex-col gap-3 text-sm text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
           <p>{companyName}</p>
-          <p>Digitale Arbeitsabläufe für Handwerk, Service und operative KMU.</p>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+            <p>Digitale Arbeitsabläufe für Handwerk, Service und operative KMU.</p>
+            <CookieSettingsTrigger />
+          </div>
         </div>
       </Container>
     </footer>
