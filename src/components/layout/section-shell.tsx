@@ -17,15 +17,15 @@ export function SectionShell({
 }) {
   const toneClasses = {
     default: "bg-transparent",
-    alt: "bg-[var(--color-background-alt)]",
-    surface: "bg-white",
+    alt: "bg-[linear-gradient(180deg,rgba(235,229,219,0.72),rgba(235,229,219,0.38))]",
+    surface: "bg-[rgba(255,252,247,0.52)]",
     primary: "bg-[var(--color-primary)] text-white",
   };
 
   const spacingClasses = {
-    compact: "py-16 sm:py-20",
-    default: "py-20 sm:py-24 lg:py-28",
-    expansive: "py-24 sm:py-28 lg:py-36",
+    compact: "py-18 sm:py-22",
+    default: "py-22 sm:py-28 lg:py-32",
+    expansive: "py-28 sm:py-32 lg:py-40",
   };
 
   return (

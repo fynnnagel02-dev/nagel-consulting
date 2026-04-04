@@ -14,16 +14,14 @@ export function HomeAboutTeaserSection() {
         />
         <div className="space-y-6">
           <p className="text-base leading-8 text-[var(--color-text)]">
-            Die Arbeit beginnt bewusst nah am Tagesgeschäft: Welche Schritte
-            laufen heute wie? Wo entstehen Übergaben, Reibung und
-            Abhängigkeiten? Welche Rollen brauchen Klarheit, Sicherheit und
-            Nachvollziehbarkeit?
+            Die Arbeit beginnt nah am Tagesgeschäft: Welche Schritte laufen
+            heute wie, wo entstehen Übergaben und welche Rollen brauchen
+            Klarheit, Sicherheit und Nachvollziehbarkeit?
           </p>
           <p className="text-base leading-8 text-[var(--color-muted)]">
-            Gerade deshalb ist Vertrauen ein zentraler Teil des Projekts. Wer
-            eine betriebliche Kernlogik digitalisiert, braucht einen Partner, der
-            strukturiert arbeitet, technische Entscheidungen sauber einordnet und
-            nicht bei einer schönen Oberfläche stehen bleibt.
+            Wer eine betriebliche Kernlogik digitalisiert, braucht einen
+            Partner, der strukturiert arbeitet, technische Entscheidungen
+            sauber einordnet und Prozesse dauerhaft tragfähig gestaltet.
           </p>
           <Button asChild variant="secondary">
             <Link href="/ueber-uns">Mehr über Arbeitsweise und Haltung</Link>

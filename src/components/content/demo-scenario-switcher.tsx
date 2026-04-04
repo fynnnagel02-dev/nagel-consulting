@@ -69,6 +69,7 @@ export function DemoScenarioSwitcher({
           variant="wireframe"
           title={activeScenario.title}
           caption={activeScenario.caption}
+          eyebrow="Ablaufvorschau"
           className="min-h-[360px]"
         />
       </div>

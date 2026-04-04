@@ -1,12 +1,9 @@
-import Link from "next/link";
-import { InquiryButton } from "@/components/forms/inquiry-button";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
 import {
   DemoScenarioSwitcher,
   type DemoScenario,
 } from "@/components/content/demo-scenario-switcher";
-import { Button } from "@/components/ui/button";
 
 const scenarios: DemoScenario[] = [
   {
@@ -47,23 +44,16 @@ export function HomeDemoShowcaseSection() {
       <div className="space-y-10">
         <SectionIntro
           eyebrow="Demo"
-          title="Ein kurzer Demo-Moment statt einer langen Produktpräsentation."
-          lead="Die Demo auf der Startseite bleibt bewusst knapp. Sie zeigt, wie ein konkreter Ablauf klarer wird, und verweist dann in die dedizierte Demo-Seite für mehr Einordnung."
+          title="Ein kurzer Demo-Moment statt einer überladenen Produktstrecke."
+          lead="Die Vorschau zeigt, wie ein Ablauf klarer wird, wenn Zuständigkeiten, Status und Informationen sauber zusammengeführt werden."
         />
 
         <DemoScenarioSwitcher scenarios={scenarios} />
 
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <Button asChild>
-            <Link href="/demo">Demo ansehen</Link>
-          </Button>
-          <InquiryButton
-            variant="secondary"
-            label="Beratung anfragen"
-            inquiryCategory="Beratungsanfrage"
-            source="homepage-demo"
-          />
-        </div>
+        <p className="max-w-2xl text-sm leading-7 text-[var(--color-muted)]">
+          So werden typische operative Situationen greifbar, bevor sie im
+          Unternehmen als konkrete Anwendung umgesetzt werden.
+        </p>
       </div>
     </SectionShell>
   );

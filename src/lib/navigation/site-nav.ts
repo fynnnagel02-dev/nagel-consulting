@@ -7,7 +7,6 @@ export type NavItem = {
 export const primaryNavigation: NavItem[] = [
   { href: "/", label: "Start" },
   { href: "/loesungen", label: "Lösungen" },
-  { href: "/produkte", label: "Produkte" },
   { href: "/demo", label: "Demo" },
   { href: "/sicherheit", label: "Sicherheit" },
   { href: "/branchen", label: "Branchen" },
@@ -18,7 +17,6 @@ export const primaryNavigation: NavItem[] = [
 export const footerNavigation = {
   leistungen: [
     { href: "/loesungen", label: "Lösungen" },
-    { href: "/produkte", label: "Produkte" },
     { href: "/demo", label: "Demo" },
     { href: "/sicherheit", label: "Sicherheit" },
   ],

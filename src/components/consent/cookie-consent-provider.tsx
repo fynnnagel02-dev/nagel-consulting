@@ -35,16 +35,16 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
     }
 
     const storedValue = window.localStorage.getItem(STORAGE_KEY);
+    const nextConsent =
+      storedValue === "accepted" || storedValue === "declined"
+        ? storedValue
+        : "unset";
 
-    if (storedValue === "accepted" || storedValue === "declined") {
-      setConsent(storedValue);
-      setIsBannerOpen(false);
-    } else {
-      setConsent("unset");
-      setIsBannerOpen(true);
-    }
-
-    setIsReady(true);
+    queueMicrotask(() => {
+      setConsent(nextConsent);
+      setIsBannerOpen(nextConsent === "unset");
+      setIsReady(true);
+    });
   }, []);
 
   const accept = () => {

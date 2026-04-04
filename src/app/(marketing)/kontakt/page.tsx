@@ -17,8 +17,6 @@ export async function generateMetadata() {
 }
 
 export default async function ContactPage() {
-  const company = await getCompanyInfo().catch(() => null);
-
   return (
     <main>
       <PageHero

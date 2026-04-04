@@ -1,8 +1,6 @@
-import Link from "next/link";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
 import type { SecurityPillar } from "@/lib/mappers/marketing";
-import { Button } from "@/components/ui/button";
 
 export function HomeTrustSecuritySection({
   pillars,
@@ -16,12 +14,12 @@ export function HomeTrustSecuritySection({
           <SectionIntro
             eyebrow="Vertrauen & Sicherheit"
             title="Vertrauen entsteht, wenn Zugriff, Verantwortung und Historie klar geregelt sind."
-            lead="Die Startseite gibt nur den Überblick: kontrollierter Zugriff, sichere Anmeldung, verlässliche technische Grundlage und nachvollziehbare Prozesse."
+            lead="Kontrollierter Zugriff, sichere Anmeldung, verlässliche technische Grundlage und nachvollziehbare Prozesse bilden den Rahmen für belastbare operative Anwendungen."
           />
           <p className="max-w-xl text-sm leading-7 text-[var(--color-muted)]">
-            Die inhaltliche Tiefe zu Rollen, Rechten, Anmeldung,
-            Netzwerkbeschränkung und Nachvollziehbarkeit liegt auf der
-            Sicherheitsseite.
+            Rollen, Rechte, Anmeldung, Netzwerkbeschränkung und
+            Nachvollziehbarkeit werden entlang realer Betriebsanforderungen
+            gedacht.
           </p>
         </div>
 
@@ -39,11 +37,10 @@ export function HomeTrustSecuritySection({
               </p>
             </article>
           ))}
-          <div className="pt-3">
-            <Button asChild variant="secondary">
-              <Link href="/sicherheit">Mehr zu Sicherheit und Zugriff</Link>
-            </Button>
-          </div>
+          <p className="pt-3 text-sm leading-7 text-[var(--color-muted)]">
+            So entstehen Anwendungen, die sensible Informationen schützen und
+            Verantwortung im Prozess klar abbilden.
+          </p>
         </div>
       </div>
     </SectionShell>

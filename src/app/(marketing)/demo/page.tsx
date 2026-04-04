@@ -76,15 +76,14 @@ export default async function DemoPage() {
       <SectionShell>
         <div className="grid gap-10 lg:grid-cols-[0.85fr,1.15fr]">
           <SectionIntro
-            eyebrow="Einordnung"
-            title="Was eine Demo hier leisten soll"
-            lead="Sie soll greifbar machen, wie ein heute unklarer Ablauf in einer strukturierten Anwendung verständlicher wird. Nicht mehr, aber auch nicht weniger."
+            eyebrow="Demo"
+            title="Konkrete Einblicke in strukturierte Arbeitsabläufe."
+            lead="Die Demo zeigt, wie Anfragebearbeitung, Freigaben und operative Koordination in einer klaren Anwendung zusammenlaufen."
           />
           <div className="space-y-4 text-base leading-8 text-[var(--color-muted)]">
             <p>
-              Deshalb bleiben die Vorschauen bewusst reduziert. Es geht nicht um
-              möglichst viele Klicks, sondern um das Verständnis für Rollen,
-              Zuständigkeiten, Statuswechsel und Nachvollziehbarkeit.
+              Sichtbar werden Rollen, Zuständigkeiten, Statuswechsel und
+              Informationswege, die im Tagesgeschäft zuverlässig ineinandergreifen.
             </p>
             <p>
               Je nach Prozess kann eine Demo auf Anfragebearbeitung, interne
@@ -105,6 +104,7 @@ export default async function DemoPage() {
             variant="diagram"
             title="Klarer Ablauf statt oberflächlicher Darstellung"
             caption="Demo-Prinzip"
+            eyebrow="Produktvorschau"
           />
           <div className="space-y-5">
             <h2 className="font-display text-3xl text-[var(--color-text)]">

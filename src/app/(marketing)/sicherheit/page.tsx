@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { InquiryButton } from "@/components/forms/inquiry-button";
 import { getCompanyInfo } from "@/lib/queries/public/company";
 import { getActiveSecurityFeatures } from "@/lib/queries/public/security";

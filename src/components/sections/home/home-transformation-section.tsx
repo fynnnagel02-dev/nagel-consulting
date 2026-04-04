@@ -1,7 +1,5 @@
-import Link from "next/link";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
-import { Button } from "@/components/ui/button";
 
 const principles = [
   {
@@ -26,9 +24,9 @@ export function HomeTransformationSection() {
     <SectionShell spacing="compact">
       <div className="space-y-8">
         <SectionIntro
-          eyebrow="Kurz erklärt"
+          eyebrow="Struktur"
           title="Nagel Solutions übersetzt gewachsene Abläufe in digitale Struktur."
-          lead="Im Zentrum stehen keine Dashboards, sondern belastbare Arbeitsflüsse: klare Zuständigkeiten, sauber geführte Daten und Prozesse, die auch bei Wachstum kontrollierbar bleiben."
+          lead="Im Zentrum stehen belastbare Arbeitsflüsse: klare Zuständigkeiten, sauber geführte Daten und Prozesse, die auch bei Wachstum kontrollierbar bleiben."
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {principles.map((principle) => (
@@ -44,11 +42,6 @@ export function HomeTransformationSection() {
               </p>
             </article>
           ))}
-        </div>
-        <div>
-          <Button asChild variant="secondary">
-            <Link href="/ueber-uns">Arbeitsweise ansehen</Link>
-          </Button>
         </div>
       </div>
     </SectionShell>

@@ -1,9 +1,5 @@
-import Link from "next/link";
-import { InquiryButton } from "@/components/forms/inquiry-button";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
-import { Button } from "@/components/ui/button";
-import type { HomeSolutionPreview } from "@/lib/mappers/marketing";
 
 const offerModels = [
   {
@@ -23,17 +19,19 @@ const offerModels = [
 ];
 
 export function HomeOfferModelSection({
-  solutions,
+  solutions: _solutions,
 }: {
-  solutions: HomeSolutionPreview[];
+  solutions: unknown[];
 }) {
+  void _solutions;
+
   return (
     <SectionShell tone="alt" spacing="compact">
       <div className="space-y-10">
         <SectionIntro
           eyebrow="Leistungsmodell"
-          title="Zwei Angebotsformen, klar eingeordnet."
-          lead="Die Homepage zeigt nur den Überblick. Die eigentliche fachliche Tiefe liegt auf den Lösungsseiten und im Gespräch über den konkreten Prozess."
+          title="Ein Angebotsbereich, zwei klar unterscheidbare Wege."
+          lead="Nagel Solutions bündelt standardisierbare Werkzeuge und individuelle Projektlogik unter einem gemeinsamen Lösungsdach."
         />
 
         <div className="grid gap-6 lg:grid-cols-2">
@@ -55,35 +53,6 @@ export function HomeOfferModelSection({
               </div>
             </article>
           ))}
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-[1fr,0.9fr] lg:items-end">
-          <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-primary)]">
-              Beispielhafte Einsatzfelder
-            </p>
-            <ul className="space-y-3 text-sm leading-7 text-[var(--color-muted)]">
-              {solutions.slice(0, 2).map((solution) => (
-                <li key={solution.title} className="border-t border-[var(--color-border)] pt-3">
-                  <span className="font-medium text-[var(--color-text)]">
-                    {solution.title}
-                  </span>
-                  {" - "}
-                  {solution.solves}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-            <Button asChild variant="secondary">
-              <Link href="/loesungen">Zu den Lösungen</Link>
-            </Button>
-            <InquiryButton
-              label="Anfrage stellen"
-              inquiryCategory="Individuelle Projektanfrage"
-              source="homepage-offer-model"
-            />
-          </div>
         </div>
       </div>
     </SectionShell>
