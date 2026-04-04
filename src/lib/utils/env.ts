@@ -15,3 +15,13 @@ const serverEnvSchema = z.object({
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
 
 export const getEnv = cache(() => serverEnvSchema.parse(process.env));
+
+export const getSupabaseEnv = cache(() => {
+  const env = getEnv();
+
+  return {
+    NEXT_PUBLIC_SUPABASE_URL: env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    SUPABASE_SERVICE_ROLE_KEY: env.SUPABASE_SERVICE_ROLE_KEY,
+  };
+});
