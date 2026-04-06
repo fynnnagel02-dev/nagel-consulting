@@ -212,6 +212,15 @@ body::before {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -20% 0;
+  }
+}
+
 .hero-panel-float,
 .hero-grid,
 .hero-message-glow {

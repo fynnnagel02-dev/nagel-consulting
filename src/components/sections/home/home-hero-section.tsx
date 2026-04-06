@@ -3,7 +3,6 @@
 import { useSyncExternalStore } from "react";
 import { Reveal } from "@/components/motion/reveal";
 import { SectionShell } from "@/components/layout/section-shell";
-import { VisualPlaceholder } from "@/components/content/visual-placeholder";
 
 export function HomeHeroSection() {
   const isSafari = useSyncExternalStore(
@@ -119,26 +118,12 @@ function HeroStage({ animated }: { animated: boolean }) {
 
         {animated ? (
           <Reveal delay={0.52} y={18}>
-            <HeroPreview />
+            <div className="hidden lg:block" aria-hidden="true" />
           </Reveal>
         ) : (
-          <HeroPreview />
+          <div className="hidden lg:block" aria-hidden="true" />
         )}
       </div>
-    </div>
-  );
-}
-
-function HeroPreview() {
-  return (
-    <div className="relative z-0 mt-8 w-full max-w-[72rem] lg:mt-0 lg:self-center lg:pt-10">
-      <VisualPlaceholder
-        title="Ein klarer Ablauf statt verteilter Einzellösungen"
-        caption="Operative Prozessansicht"
-        eyebrow="Produktvorschau"
-        variant="surface"
-        className="hero-preview-surface relative mx-auto min-h-[19rem] max-w-[70rem] lg:min-h-[22rem] xl:min-h-[23.5rem]"
-      />
     </div>
   );
 }
