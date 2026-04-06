@@ -1,45 +1,32 @@
 import Link from "next/link";
 import { InquiryButton } from "@/components/forms/inquiry-button";
 import { getCompanyInfo } from "@/lib/queries/public/company";
-import { getActiveSolutions } from "@/lib/queries/public/solutions";
 import { getPageSections } from "@/lib/queries/public/page-sections";
 import { getSafePageSections } from "@/lib/content/page-sections";
-import { mapFeaturedSolutions } from "@/lib/mappers/marketing";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { PageHero } from "@/components/layout/page-hero";
 import { SectionShell } from "@/components/layout/section-shell";
 import { SectionIntro } from "@/components/layout/section-intro";
-import { SolutionPreview } from "@/components/content/solution-preview";
 import { PageSectionRenderer } from "@/components/sections/page-section-renderer";
 import { Button } from "@/components/ui/button";
 
 const standardSolutions = [
   {
-    title: "Anfrage- und Auftragsboard",
+    title: "Digitale Zeiterfassung für operative Teams",
     description:
-      "Ein standardisierter Lösungsbaustein für die strukturierte Erfassung, Bearbeitung und Nachverfolgung eingehender Anfragen und Aufträge.",
-    helpsWith:
-      "Reduziert Mehrfacheingaben, schafft klare Statussicht und ordnet Zuständigkeiten zwischen Büro und operativer Bearbeitung.",
+      "Ein standardisierter Lösungsbaustein zur strukturierten Erfassung, Prüfung und Auswertung von Arbeitszeiten im operativen Alltag.",
+    hint: "Interaktive Demo verfügbar",
+    details: [
+      "Klare Erfassung von Arbeitszeiten und Pausen ohne Excel oder Papier",
+      "Nachvollziehbare Freigabeprozesse für Teamleitung und Verwaltung",
+      "Einheitliche Datengrundlage für Auswertung und Abrechnung",
+    ],
     audience:
-      "Für Handwerksbetriebe und Dienstleister mit wiederkehrender Anfrage- und Auftragskoordination.",
-  },
-  {
-    title: "Freigabe- und Entscheidungsfluss",
-    description:
-      "Ein wiederverwendbarer Lösungsbaustein für interne Freigaben mit Rollenlogik, Kommentaren und nachvollziehbarer Historie statt losem Abstimmungsverkehr.",
-    helpsWith:
-      "Macht Entscheidungen klarer, verringert Rückfragen und sorgt für bessere Nachvollziehbarkeit im Tagesgeschäft.",
-    audience:
-      "Für operative Teams, die mehrere interne Freigabeschritte sauber organisieren müssen.",
-  },
-  {
-    title: "Einsatz- und Rückmeldewerkzeug",
-    description:
-      "Ein standardisierbarer Ablauf für Koordination, Statusrückmeldung und geordnete Nachbearbeitung im laufenden Betrieb.",
-    helpsWith:
-      "Verbindet Disposition, Bearbeitungsstand und Rückmeldung in einer einheitlichen Struktur.",
-    audience:
-      "Für einsatzgetriebene KMU und lokale Serviceunternehmen mit operativem Abstimmungsbedarf.",
+      "Für Handwerksbetriebe und Dienstleister mit operativen Teams und wiederkehrenden Arbeitsabläufen.",
+    primaryCtaLabel: "Demo ansehen",
+    primaryCtaHref: "/demo",
+    secondaryCtaLabel: "Individuelle Anpassung anfragen",
+    inquiryCategory: "Standardisierte Lösungsanfrage" as const,
   },
 ];
 
@@ -55,10 +42,7 @@ export async function generateMetadata() {
 }
 
 export default async function SolutionsPage() {
-  const [solutions, pageSections] = await Promise.all([
-    getActiveSolutions().catch(() => null),
-    getPageSections("loesungen").catch(() => null),
-  ]);
+  const pageSections = await getPageSections("loesungen").catch(() => null);
 
   return (
     <main>
@@ -104,22 +88,6 @@ export default async function SolutionsPage() {
         </div>
       </SectionShell>
 
-      <SectionShell>
-        <SectionIntro
-          eyebrow="Individuelle Lösungswege"
-          title="Keine Merkmalsliste, sondern gezielte Eingriffe in operative Reibung."
-          lead="Diese Lösungen orientieren sich an realen Arbeitsabläufen: Anfrage, Freigabe, Bearbeitung, Rückmeldung, Dokumentation und Verantwortung."
-        />
-      </SectionShell>
-
-      <SectionShell>
-        <div>
-          {mapFeaturedSolutions(solutions).map((solution) => (
-            <SolutionPreview key={solution.title} {...solution} />
-          ))}
-        </div>
-      </SectionShell>
-
       <SectionShell tone="alt">
         <div className="space-y-6">
           <SectionIntro
@@ -143,23 +111,33 @@ export default async function SolutionsPage() {
                   <p className="text-base leading-8 text-[var(--color-text)]">
                     {solution.description}
                   </p>
+                  {solution.hint ? (
+                    <p className="text-sm leading-7 text-[var(--color-muted)]">
+                      {solution.hint}
+                    </p>
+                  ) : null}
                 </div>
                 <div className="space-y-4">
-                  <p className="text-sm leading-7 text-[var(--color-muted)]">
-                    {solution.helpsWith}
-                  </p>
+                  {solution.details.map((detail) => (
+                    <p
+                      key={detail}
+                      className="text-sm leading-7 text-[var(--color-muted)]"
+                    >
+                      {detail}
+                    </p>
+                  ))}
                   <p className="text-sm leading-7 text-[var(--color-muted)]">
                     {solution.audience}
                   </p>
                   <div className="flex flex-col gap-3 sm:flex-row">
+                    <Button asChild>
+                      <Link href={solution.primaryCtaHref}>{solution.primaryCtaLabel}</Link>
+                    </Button>
                     <InquiryButton
-                      label="Anfrage stellen"
-                      inquiryCategory="Standardisierte Lösungsanfrage"
+                      label={solution.secondaryCtaLabel}
+                      inquiryCategory={solution.inquiryCategory}
                       source={`loesungen-standard-${solution.title}`}
                     />
-                    <Button asChild variant="secondary">
-                      <Link href="/demo">Passende Demo ansehen</Link>
-                    </Button>
                   </div>
                 </div>
               </article>

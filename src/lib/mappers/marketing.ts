@@ -165,8 +165,34 @@ export function mapIndustryScenarios(industries: Industry[] | null | undefined) 
 export function mapSecurityPillars(
   features: SecurityFeature[] | null | undefined,
 ): SecurityPillar[] {
+  const normalizeSecurityText = (text: string) => {
+    const normalized = text.trim();
+
+    if (
+      normalized ===
+      "All platform communication is designed to operate over modern HTTPS-based delivery and secure service integrations."
+    ) {
+      return "Die gesamte Plattformkommunikation ist auf moderne HTTPS-Übertragung und sichere Service-Integrationen ausgelegt.";
+    }
+
+    if (
+      normalized ===
+      "Critical records can be structured, timestamped, and managed consistently instead of being scattered across spreadsheets."
+    ) {
+      return "Wichtige Datensätze können strukturiert, mit Zeitbezug erfasst und einheitlich geführt werden, statt über Tabellen verteilt zu bleiben.";
+    }
+
+    return text;
+  };
+
   const featureMap = new Map(
-    (features ?? []).map((feature) => [feature.title.toLowerCase(), feature]),
+    (features ?? []).map((feature) => [
+      feature.title.toLowerCase(),
+      {
+        ...feature,
+        description: normalizeSecurityText(feature.description),
+      },
+    ]),
   );
 
   const fallback = (text: string) => text;
